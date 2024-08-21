@@ -14,6 +14,7 @@ module im_tb;
 
 
     initial begin
+
         for (iterator = 0; iterator < 256; iterator = iterator + 4) begin
             instr_addr = iterator;
             #10;
