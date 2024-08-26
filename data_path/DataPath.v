@@ -1,8 +1,10 @@
 `include "./data_path/Adder.v"
 `include "./data_path/PC.v"
 `include "./data_path/Mux2x1.v"
+`include "./data_path/Mux4x1.v"
 `include "./data_path/BR.v"
 `include "./data_path/ALU.v"
+`include "./data_path/SE.v"
 
 module DataPath (
     // ---------------------------------------------------------------------------------------------
@@ -40,6 +42,10 @@ module DataPath (
     wire [31:0] s_srcA;
     wire [31:0] s_srcB;
 
+    wire [31:0] s_immExt;
+    wire [31:0] s_src2;
+    wire [31:0] s_wd3;
+
     // constantes
     reg [31:0] cuatro = 4;
     reg [31:0] addr_reset = 0;
@@ -71,7 +77,7 @@ module DataPath (
         .a1(instr[19:15]),
         .a2(instr[24:20]),
         .a3(instr[11:7]),
-        .wd3(s_alu_res),
+        .wd3(s_wd3),
         .we(regWrite),
         .rd1(s_srcA),
         .rd2(s_srcB)
@@ -79,10 +85,33 @@ module DataPath (
 
     ALU alu (
         .srcA(s_srcA),
-        .srcB(s_srcB),
+        .srcB(s_src2),
         .ALUControl(aluControl),
         .res(s_alu_res),
         .zero(zero)
+    );
+
+    // TYPE-I
+    SE sign_extension (
+        .instr(instr),
+        .src(inmSrc),
+        .immExt(s_immExt)
+    );
+
+    Mux2x1 m2 (
+        .e1(s_srcB),
+        .e2(s_immExt),
+        .sel(aluSrc),
+        .sal(s_src2)
+    );
+
+    Mux4x1 m3 (
+        .e1(s_alu_res),
+        .e2(readData),
+        .e3(32'b0),
+        .e4(32'b0),
+        .sel(resultSrc),
+        .sal(s_wd3)
     );
 
     // --- outputs ---------------------------------------------------------------------------------

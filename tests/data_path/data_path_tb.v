@@ -56,24 +56,20 @@ module data_path_tb;
 
         jump = 1; // enable pc
 
-        // dentro del reg 21 tenemos 32'b1 lo sumaremos con sigo mismo y guardaremos el resultado en el reg 22
+        // constantes
         regWrite = 1;
+        inmSrc = 2'b00;
         aluControl = 3'b000;
-        instr = 32'b00000001010110101000101100000000; // add -> rd22 (deberia ser 2)
-        #10
-        aluControl = 3'b001;
-        instr = 32'b00000001011010101000101110000000; // sub -> rd23 (deberia ser -1)
-        #10
-        aluControl = 3'b010;
-        instr = 32'b00000001011010101000110000000000; // and -> rd23 (deberia ser 0)
-        #10
-        aluControl = 3'b011;
-        instr = 32'b00000001011010101000110010000000; // or -> rd23 (deberia ser 3)
-        #10
-        aluControl = 3'b101;
-        instr = 32'b00000001010110101000110100000000; // slt -> rd23 (deberia ser 0)
-        #10
+        aluSrc = 1;
 
+        // test
+        resultSrc = 2'b00;
+        instr = 32'b00000001010110101000101100000000; // add -> rd22 (deberia ser 22)
+        #10
+        resultSrc = 2'b01;
+        instr = 32'b00000001011010101000101110000000; // add -> rd23 (deberia ser 23)
+        readData = 32'h0000000c;
+        #10
 
         $display("finished...");
         $finish;
