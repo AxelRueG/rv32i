@@ -54,12 +54,27 @@ module data_path_tb;
         $dumpfile("./waves/data_path_tb.vcd");
         $dumpvars(0, data_path_tb);
 
-        jump = 1;
-        #100
-        jump = 0;
-        #20
-        jump = 1;
-        #100
+        jump = 1; // enable pc
+
+        // dentro del reg 21 tenemos 32'b1 lo sumaremos con sigo mismo y guardaremos el resultado en el reg 22
+        regWrite = 1;
+        aluControl = 3'b000;
+        instr = 32'b00000001010110101000101100000000; // add -> rd22 (deberia ser 2)
+        #10
+        aluControl = 3'b001;
+        instr = 32'b00000001011010101000101110000000; // sub -> rd23 (deberia ser -1)
+        #10
+        aluControl = 3'b010;
+        instr = 32'b00000001011010101000110000000000; // and -> rd23 (deberia ser 0)
+        #10
+        aluControl = 3'b011;
+        instr = 32'b00000001011010101000110010000000; // or -> rd23 (deberia ser 3)
+        #10
+        aluControl = 3'b101;
+        instr = 32'b00000001010110101000110100000000; // slt -> rd23 (deberia ser 0)
+        #10
+
+
         $display("finished...");
         $finish;
         
