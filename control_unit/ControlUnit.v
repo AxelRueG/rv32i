@@ -1,7 +1,7 @@
 `include "./control_unit/aluDeco.v"
 `include "./control_unit/mainDeco.v"
 
-module moduleName (
+module ControlUnit (
     input wire [6:0] op,
     input wire [2:0] f3,
     input wire f7,
