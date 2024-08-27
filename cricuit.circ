@@ -60,6 +60,86 @@
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(370,170)" to="(560,170)"/>
+    <wire from="(440,280)" to="(440,300)"/>
+    <wire from="(480,200)" to="(480,230)"/>
+    <wire from="(370,180)" to="(600,180)"/>
+    <wire from="(130,200)" to="(480,200)"/>
+    <wire from="(70,40)" to="(70,270)"/>
+    <wire from="(90,80)" to="(90,310)"/>
+    <wire from="(160,160)" to="(160,210)"/>
+    <wire from="(430,270)" to="(440,270)"/>
+    <wire from="(220,160)" to="(220,210)"/>
+    <wire from="(280,160)" to="(280,210)"/>
+    <wire from="(340,160)" to="(340,210)"/>
+    <wire from="(70,40)" to="(140,40)"/>
+    <wire from="(580,280)" to="(590,280)"/>
+    <wire from="(400,190)" to="(590,190)"/>
+    <wire from="(80,60)" to="(140,60)"/>
+    <wire from="(130,200)" to="(130,210)"/>
+    <wire from="(370,160)" to="(370,170)"/>
+    <wire from="(90,80)" to="(140,80)"/>
+    <wire from="(400,190)" to="(400,210)"/>
+    <wire from="(590,190)" to="(590,280)"/>
+    <wire from="(450,300)" to="(450,330)"/>
+    <wire from="(70,270)" to="(110,270)"/>
+    <wire from="(100,100)" to="(140,100)"/>
+    <wire from="(370,180)" to="(370,210)"/>
+    <wire from="(80,290)" to="(110,290)"/>
+    <wire from="(580,300)" to="(600,300)"/>
+    <wire from="(40,200)" to="(130,200)"/>
+    <wire from="(80,60)" to="(80,290)"/>
+    <wire from="(100,100)" to="(100,330)"/>
+    <wire from="(430,330)" to="(450,330)"/>
+    <wire from="(440,280)" to="(460,280)"/>
+    <wire from="(90,310)" to="(110,310)"/>
+    <wire from="(190,160)" to="(190,210)"/>
+    <wire from="(430,300)" to="(440,300)"/>
+    <wire from="(450,300)" to="(460,300)"/>
+    <wire from="(600,180)" to="(600,300)"/>
+    <wire from="(250,160)" to="(250,210)"/>
+    <wire from="(560,170)" to="(560,230)"/>
+    <wire from="(310,160)" to="(310,210)"/>
+    <wire from="(100,330)" to="(110,330)"/>
+    <comp lib="0" loc="(40,200)" name="Clock"/>
+    <comp loc="(580,280)" name="Memory"/>
+    <comp loc="(430,330)" name="pd_mine"/>
+    <comp lib="0" loc="(440,270)" name="Splitter">
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="32"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="0"/>
+      <a name="bit12" val="0"/>
+      <a name="bit13" val="0"/>
+      <a name="bit14" val="0"/>
+      <a name="bit15" val="0"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="none"/>
+      <a name="bit26" val="none"/>
+      <a name="bit27" val="none"/>
+      <a name="bit28" val="none"/>
+      <a name="bit29" val="none"/>
+      <a name="bit30" val="none"/>
+      <a name="bit31" val="none"/>
+    </comp>
+    <comp loc="(340,160)" name="UC"/>
   </circuit>
   <circuit name="pc">
     <a name="circuit" val="pc"/>
@@ -108,10 +188,6 @@
       <circ-port height="10" pin="220,90" width="10" x="135" y="95"/>
       <circ-anchor facing="east" height="6" width="6" x="137" y="97"/>
     </appear>
-    <comp lib="0" loc="(130,70)" name="Pin">
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-    </comp>
     <comp lib="0" loc="(220,90)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -120,6 +196,10 @@
     </comp>
     <comp lib="0" loc="(130,140)" name="Pin">
       <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(130,70)" name="Pin">
+      <a name="width" val="32"/>
       <a name="tristate" val="false"/>
     </comp>
   </circuit>
@@ -150,6 +230,23 @@
       <circ-port height="10" pin="350,150" width="10" x="155" y="165"/>
       <circ-anchor facing="east" height="6" width="6" x="157" y="117"/>
     </appear>
+    <comp lib="0" loc="(90,240)" name="Pin">
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(90,120)" name="Pin">
+      <a name="width" val="5"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(90,300)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(350,150)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="0" loc="(90,60)" name="Pin">
       <a name="tristate" val="false"/>
     </comp>
@@ -161,28 +258,11 @@
       <a name="width" val="5"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(350,150)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(90,240)" name="Pin">
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(90,120)" name="Pin">
-      <a name="width" val="5"/>
-      <a name="tristate" val="false"/>
-    </comp>
     <comp lib="0" loc="(350,60)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="width" val="32"/>
       <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(90,300)" name="Pin">
-      <a name="tristate" val="false"/>
     </comp>
   </circuit>
   <circuit name="ALU">
@@ -205,22 +285,14 @@
       <circ-port height="10" pin="170,110" width="10" x="135" y="115"/>
       <circ-anchor facing="east" height="6" width="6" x="137" y="97"/>
     </appear>
-    <comp lib="0" loc="(170,110)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(110,200)" name="Pin">
-      <a name="width" val="3"/>
-      <a name="tristate" val="false"/>
-    </comp>
     <comp lib="0" loc="(110,50)" name="Pin">
       <a name="width" val="32"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(110,140)" name="Pin">
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
+    <comp lib="0" loc="(170,110)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(170,50)" name="Pin">
       <a name="facing" val="west"/>
@@ -228,12 +300,51 @@
       <a name="width" val="32"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="0" loc="(110,140)" name="Pin">
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(110,200)" name="Pin">
+      <a name="width" val="3"/>
+      <a name="tristate" val="false"/>
+    </comp>
   </circuit>
   <circuit name="data_path">
     <a name="circuit" val="data_path"/>
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <rect fill="none" height="179" stroke="#000000" stroke-width="2" width="330" x="40" y="50"/>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="61" y="77">branch</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="90" y="65">jump</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="117" y="77">clk</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="150" y="65">readData</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="180" y="78">resultSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="211" y="65">immSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="240" y="78">instr</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="270" y="65">regWrite</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="301" y="77">aluSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="337" y="64">aluControl</text>
+      <circ-port height="10" pin="1110,370" width="10" x="365" y="85"/>
+      <circ-port height="10" pin="1110,430" width="10" x="365" y="105"/>
+      <circ-port height="10" pin="1110,460" width="10" x="365" y="125"/>
+      <circ-port height="10" pin="1110,490" width="10" x="365" y="145"/>
+      <circ-port height="10" pin="1110,520" width="10" x="365" y="165"/>
+      <circ-port height="10" pin="1110,580" width="10" x="365" y="185"/>
+      <circ-port height="10" pin="1110,650" width="10" x="365" y="205"/>
+      <circ-port height="8" pin="80,200" width="8" x="56" y="46"/>
+      <circ-port height="8" pin="280,200" width="8" x="86" y="46"/>
+      <circ-port height="8" pin="340,200" width="8" x="116" y="46"/>
+      <circ-port height="8" pin="500,100" width="8" x="146" y="46"/>
+      <circ-port height="8" pin="540,200" width="8" x="176" y="46"/>
+      <circ-port height="8" pin="590,200" width="8" x="206" y="46"/>
+      <circ-port height="8" pin="610,100" width="8" x="236" y="46"/>
+      <circ-port height="8" pin="740,200" width="8" x="266" y="46"/>
+      <circ-port height="8" pin="830,200" width="8" x="296" y="46"/>
+      <circ-port height="8" pin="900,200" width="8" x="326" y="46"/>
+      <circ-anchor facing="east" height="6" width="6" x="367" y="87"/>
+    </appear>
     <wire from="(280,200)" to="(280,460)"/>
     <wire from="(130,480)" to="(130,550)"/>
     <wire from="(740,200)" to="(740,330)"/>
@@ -319,241 +430,60 @@
     <wire from="(1000,410)" to="(1010,410)"/>
     <wire from="(60,470)" to="(60,530)"/>
     <wire from="(900,200)" to="(900,440)"/>
-    <comp lib="6" loc="(1143,527)" name="Text">
-      <a name="text" val="f7"/>
-    </comp>
     <comp loc="(740,570)" name="SE"/>
-    <comp lib="0" loc="(340,200)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(1110,370)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(181,447)" name="Text">
-      <a name="text" val="add4"/>
+    <comp lib="6" loc="(1198,652)" name="Text">
+      <a name="text" val="pc"/>
     </comp>
     <comp lib="6" loc="(588,175)" name="Text">
       <a name="text" val="inmSrc"/>
     </comp>
-    <comp lib="0" loc="(740,200)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(80,200)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="6" loc="(898,173)" name="Text">
-      <a name="text" val="ALUControl"/>
-    </comp>
-    <comp lib="6" loc="(538,176)" name="Text">
-      <a name="text" val="resultSrc"/>
-    </comp>
-    <comp lib="6" loc="(1198,652)" name="Text">
-      <a name="text" val="pc"/>
-    </comp>
-    <comp lib="6" loc="(778,446)" name="Text">
-      <a name="text" val="s_src2"/>
-    </comp>
-    <comp lib="2" loc="(300,480)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="16"/>
-    </comp>
-    <comp lib="6" loc="(1207,463)" name="Text">
-      <a name="text" val="opcode"/>
-    </comp>
-    <comp lib="0" loc="(540,200)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(60,450)" name="Constant">
-      <a name="width" val="16"/>
-      <a name="value" val="0x4"/>
-    </comp>
-    <comp lib="0" loc="(1110,490)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="3"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(285,172)" name="Text">
-      <a name="text" val="jump"/>
-    </comp>
-    <comp lib="0" loc="(480,520)" name="Bit Extender">
-      <a name="in_width" val="16"/>
-      <a name="out_width" val="32"/>
-    </comp>
-    <comp lib="3" loc="(200,470)" name="Adder">
-      <a name="width" val="16"/>
-    </comp>
-    <comp lib="0" loc="(1110,650)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="16"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(228,466)" name="Text">
-      <a name="text" val="s_pcnext"/>
-    </comp>
-    <comp lib="0" loc="(40,540)" name="Splitter">
-      <a name="fanout" val="1"/>
-      <a name="incoming" val="32"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
-      <a name="bit7" val="0"/>
-      <a name="bit8" val="0"/>
-      <a name="bit9" val="0"/>
-      <a name="bit10" val="0"/>
-      <a name="bit11" val="0"/>
-      <a name="bit12" val="0"/>
-      <a name="bit13" val="0"/>
-      <a name="bit14" val="0"/>
-      <a name="bit15" val="0"/>
-      <a name="bit16" val="none"/>
-      <a name="bit17" val="none"/>
-      <a name="bit18" val="none"/>
-      <a name="bit19" val="none"/>
-      <a name="bit20" val="none"/>
-      <a name="bit21" val="none"/>
-      <a name="bit22" val="none"/>
-      <a name="bit23" val="none"/>
-      <a name="bit24" val="none"/>
-      <a name="bit25" val="none"/>
-      <a name="bit26" val="none"/>
-      <a name="bit27" val="none"/>
-      <a name="bit28" val="none"/>
-      <a name="bit29" val="none"/>
-      <a name="bit30" val="none"/>
-      <a name="bit31" val="none"/>
+    <comp lib="6" loc="(127,454)" name="Text">
+      <a name="text" val="s_pcPlus"/>
     </comp>
     <comp lib="6" loc="(232,552)" name="Text">
       <a name="text" val="s_pcJump"/>
-    </comp>
-    <comp lib="3" loc="(200,540)" name="Adder">
-      <a name="width" val="16"/>
-    </comp>
-    <comp lib="0" loc="(610,100)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="6" loc="(1221,578)" name="Text">
-      <a name="text" val="writeData"/>
-    </comp>
-    <comp lib="0" loc="(1110,460)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="7"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(339,175)" name="Text">
-      <a name="text" val="clk"/>
-    </comp>
-    <comp lib="0" loc="(830,200)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(1030,490)" name="Splitter">
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="32"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
-      <a name="bit7" val="none"/>
-      <a name="bit8" val="none"/>
-      <a name="bit9" val="none"/>
-      <a name="bit10" val="none"/>
-      <a name="bit11" val="none"/>
-      <a name="bit12" val="1"/>
-      <a name="bit13" val="1"/>
-      <a name="bit14" val="1"/>
-      <a name="bit15" val="none"/>
-      <a name="bit16" val="none"/>
-      <a name="bit17" val="none"/>
-      <a name="bit18" val="none"/>
-      <a name="bit19" val="none"/>
-      <a name="bit20" val="none"/>
-      <a name="bit21" val="none"/>
-      <a name="bit22" val="none"/>
-      <a name="bit23" val="none"/>
-      <a name="bit24" val="none"/>
-      <a name="bit25" val="none"/>
-      <a name="bit26" val="none"/>
-      <a name="bit27" val="none"/>
-      <a name="bit28" val="none"/>
-      <a name="bit29" val="none"/>
-      <a name="bit30" val="2"/>
-      <a name="bit31" val="none"/>
-    </comp>
-    <comp lib="0" loc="(500,100)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp loc="(760,400)" name="BR"/>
-    <comp lib="6" loc="(80,173)" name="Text">
-      <a name="text" val="branch"/>
-    </comp>
-    <comp lib="0" loc="(900,200)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="3"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="2" loc="(100,460)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="16"/>
-    </comp>
-    <comp lib="6" loc="(830,175)" name="Text">
-      <a name="text" val="ALUSrc"/>
     </comp>
     <comp lib="0" loc="(590,200)" name="Pin">
       <a name="facing" val="south"/>
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="6" loc="(182,515)" name="Text">
-      <a name="text" val="addJump"/>
+    <comp lib="6" loc="(228,466)" name="Text">
+      <a name="text" val="s_pcnext"/>
     </comp>
-    <comp lib="2" loc="(850,460)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
+    <comp lib="6" loc="(898,173)" name="Text">
+      <a name="text" val="ALUControl"/>
+    </comp>
+    <comp lib="6" loc="(1207,463)" name="Text">
+      <a name="text" val="opcode"/>
+    </comp>
+    <comp lib="6" loc="(1221,578)" name="Text">
+      <a name="text" val="writeData"/>
+    </comp>
+    <comp lib="6" loc="(1143,527)" name="Text">
+      <a name="text" val="f7"/>
+    </comp>
+    <comp lib="0" loc="(740,200)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(500,100)" name="Pin">
+      <a name="facing" val="south"/>
       <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
     </comp>
-    <comp lib="6" loc="(615,17)" name="Text">
-      <a name="text" val="inst"/>
+    <comp lib="6" loc="(80,173)" name="Text">
+      <a name="text" val="branch"/>
     </comp>
-    <comp lib="6" loc="(737,175)" name="Text">
-      <a name="text" val="regWrite"/>
+    <comp lib="6" loc="(538,176)" name="Text">
+      <a name="text" val="resultSrc"/>
     </comp>
-    <comp lib="6" loc="(1151,492)" name="Text">
-      <a name="text" val="f3"/>
+    <comp loc="(400,480)" name="pc"/>
+    <comp lib="0" loc="(900,200)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="3"/>
+      <a name="tristate" val="false"/>
     </comp>
-    <comp lib="6" loc="(1148,434)" name="Text">
-      <a name="text" val="zero"/>
-    </comp>
-    <comp lib="0" loc="(1110,580)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(1110,520)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp loc="(1000,410)" name="ALU"/>
     <comp lib="2" loc="(560,470)" name="Multiplexer">
       <a name="selloc" val="tr"/>
       <a name="select" val="2"/>
@@ -562,20 +492,25 @@
     <comp lib="6" loc="(1214,369)" name="Text">
       <a name="text" val="ALURes"/>
     </comp>
-    <comp lib="6" loc="(127,454)" name="Text">
-      <a name="text" val="s_pcPlus"/>
+    <comp lib="3" loc="(200,470)" name="Adder">
+      <a name="width" val="16"/>
     </comp>
-    <comp lib="6" loc="(500,16)" name="Text">
-      <a name="text" val="readData"/>
-    </comp>
-    <comp lib="0" loc="(280,200)" name="Pin">
+    <comp lib="0" loc="(830,200)" name="Pin">
       <a name="facing" val="south"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(1110,430)" name="Pin">
+    <comp lib="0" loc="(1110,490)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
+      <a name="width" val="3"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(737,175)" name="Text">
+      <a name="text" val="regWrite"/>
+    </comp>
+    <comp lib="0" loc="(480,520)" name="Bit Extender">
+      <a name="in_width" val="16"/>
+      <a name="out_width" val="32"/>
     </comp>
     <comp lib="0" loc="(610,390)" name="Splitter">
       <a name="fanout" val="3"/>
@@ -614,13 +549,229 @@
       <a name="bit30" val="none"/>
       <a name="bit31" val="none"/>
     </comp>
-    <comp loc="(400,480)" name="pc"/>
+    <comp lib="6" loc="(182,515)" name="Text">
+      <a name="text" val="addJump"/>
+    </comp>
+    <comp lib="0" loc="(60,450)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x4"/>
+    </comp>
+    <comp lib="0" loc="(1030,490)" name="Splitter">
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="32"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="none"/>
+      <a name="bit8" val="none"/>
+      <a name="bit9" val="none"/>
+      <a name="bit10" val="none"/>
+      <a name="bit11" val="none"/>
+      <a name="bit12" val="1"/>
+      <a name="bit13" val="1"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="none"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="none"/>
+      <a name="bit26" val="none"/>
+      <a name="bit27" val="none"/>
+      <a name="bit28" val="none"/>
+      <a name="bit29" val="none"/>
+      <a name="bit30" val="2"/>
+      <a name="bit31" val="none"/>
+    </comp>
+    <comp lib="6" loc="(778,446)" name="Text">
+      <a name="text" val="s_src2"/>
+    </comp>
+    <comp lib="6" loc="(339,175)" name="Text">
+      <a name="text" val="clk"/>
+    </comp>
+    <comp lib="0" loc="(1110,650)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="16"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="3" loc="(200,540)" name="Adder">
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="6" loc="(830,175)" name="Text">
+      <a name="text" val="ALUSrc"/>
+    </comp>
+    <comp lib="6" loc="(615,17)" name="Text">
+      <a name="text" val="inst"/>
+    </comp>
+    <comp lib="0" loc="(340,200)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="2" loc="(300,480)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1110,370)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(285,172)" name="Text">
+      <a name="text" val="jump"/>
+    </comp>
+    <comp lib="2" loc="(850,460)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(540,200)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="2" loc="(100,460)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp loc="(1000,410)" name="ALU"/>
+    <comp lib="0" loc="(1110,430)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(40,540)" name="Splitter">
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="32"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="0"/>
+      <a name="bit12" val="0"/>
+      <a name="bit13" val="0"/>
+      <a name="bit14" val="0"/>
+      <a name="bit15" val="0"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="none"/>
+      <a name="bit26" val="none"/>
+      <a name="bit27" val="none"/>
+      <a name="bit28" val="none"/>
+      <a name="bit29" val="none"/>
+      <a name="bit30" val="none"/>
+      <a name="bit31" val="none"/>
+    </comp>
+    <comp lib="0" loc="(1110,580)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(280,200)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="6" loc="(1151,492)" name="Text">
+      <a name="text" val="f3"/>
+    </comp>
+    <comp lib="0" loc="(80,200)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp loc="(760,400)" name="BR"/>
+    <comp lib="0" loc="(610,100)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="6" loc="(500,16)" name="Text">
+      <a name="text" val="readData"/>
+    </comp>
+    <comp lib="6" loc="(181,447)" name="Text">
+      <a name="text" val="add4"/>
+    </comp>
+    <comp lib="0" loc="(1110,520)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(1110,460)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="7"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(1148,434)" name="Text">
+      <a name="text" val="zero"/>
+    </comp>
   </circuit>
   <circuit name="pd_mine">
     <a name="circuit" val="pd_mine"/>
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <path d="M76,51 Q80,61 84,51" fill="none" stroke="#808080" stroke-width="2"/>
+      <rect fill="none" height="140" stroke="#000000" stroke-width="2" width="320" x="60" y="50"/>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="110" y="65">branch</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="79" y="67">clk</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="229" y="65">regWrite</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="258" y="77">aluSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="199" y="76">resultSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="291" y="66">aluControl</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="169" y="65">immSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="348" y="65">readData</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="317" y="77">instr</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="137" y="76">jump</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="365" y="172">pc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="75" y="153">f7</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="74" y="132">f3</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="76" y="113">op</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="349" y="142">writeData</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="356" y="113">aluRes</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="80" y="173">zero</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="220" y="125">Data Path</text>
+      <circ-port height="8" pin="520,160" width="8" x="166" y="46"/>
+      <circ-port height="8" pin="680,160" width="8" x="196" y="46"/>
+      <circ-port height="10" pin="510,550" width="10" x="375" y="165"/>
+      <circ-port height="10" pin="630,550" width="10" x="55" y="145"/>
+      <circ-port height="10" pin="680,550" width="10" x="55" y="125"/>
+      <circ-port height="10" pin="750,550" width="10" x="55" y="105"/>
+      <circ-port height="10" pin="870,550" width="10" x="375" y="135"/>
+      <circ-port height="10" pin="1040,550" width="10" x="55" y="165"/>
+      <circ-port height="10" pin="1110,550" width="10" x="375" y="105"/>
+      <circ-port height="8" pin="120,110" width="8" x="106" y="46"/>
+      <circ-port height="8" pin="350,110" width="8" x="136" y="46"/>
+      <circ-port height="8" pin="440,110" width="8" x="76" y="46"/>
+      <circ-port height="8" pin="820,110" width="8" x="226" y="46"/>
+      <circ-port height="8" pin="910,110" width="8" x="256" y="46"/>
+      <circ-port height="8" pin="960,110" width="8" x="286" y="46"/>
+      <circ-port height="8" pin="550,120" width="8" x="316" y="46"/>
+      <circ-port height="8" pin="640,120" width="8" x="346" y="46"/>
+      <circ-anchor facing="east" height="6" width="6" x="377" y="167"/>
+    </appear>
     <wire from="(750,190)" to="(750,200)"/>
     <wire from="(320,260)" to="(320,390)"/>
     <wire from="(630,350)" to="(680,350)"/>
@@ -725,13 +876,41 @@
     <wire from="(720,310)" to="(730,310)"/>
     <wire from="(250,390)" to="(320,390)"/>
     <wire from="(130,320)" to="(130,380)"/>
+    <comp lib="6" loc="(861,315)" name="Text">
+      <a name="text" val="s_src2"/>
+    </comp>
+    <comp lib="2" loc="(370,260)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="select" val="2"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="6" loc="(555,37)" name="Text">
+      <a name="text" val="instr"/>
+    </comp>
     <comp lib="6" loc="(277,386)" name="Text">
       <a name="text" val="pc_jump"/>
       <a name="font" val="SansSerif plain 10"/>
     </comp>
-    <comp lib="0" loc="(1110,550)" name="Pin">
-      <a name="facing" val="north"/>
+    <comp lib="2" loc="(650,430)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="select" val="2"/>
       <a name="width" val="32"/>
+    </comp>
+    <comp lib="3" loc="(250,390)" name="Adder">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="6" loc="(750,584)" name="Text">
+      <a name="text" val="op"/>
+    </comp>
+    <comp lib="0" loc="(190,290)" name="Bit Extender">
+      <a name="in_width" val="16"/>
+      <a name="out_width" val="32"/>
+    </comp>
+    <comp lib="6" loc="(511,603)" name="Text">
+      <a name="text" val="pc"/>
+    </comp>
+    <comp lib="0" loc="(120,110)" name="Pin">
+      <a name="facing" val="south"/>
       <a name="tristate" val="false"/>
     </comp>
     <comp lib="6" loc="(908,86)" name="Text">
@@ -742,125 +921,11 @@
       <a name="width" val="2"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="6" loc="(439,81)" name="Text">
-      <a name="text" val="clk"/>
-    </comp>
-    <comp lib="6" loc="(951,343)" name="Text">
-      <a name="text" val="s_srcB"/>
-    </comp>
-    <comp lib="6" loc="(518,133)" name="Text">
-      <a name="text" val="immSrc"/>
-    </comp>
-    <comp lib="6" loc="(232,234)" name="Text">
-      <a name="text" val="add1"/>
-    </comp>
-    <comp lib="6" loc="(402,434)" name="Text">
-      <a name="text" val="pc_next"/>
-      <a name="font" val="SansSerif plain 11"/>
-    </comp>
-    <comp lib="0" loc="(680,160)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="6" loc="(630,464)" name="Text">
-      <a name="text" val="m3"/>
-    </comp>
-    <comp lib="2" loc="(370,260)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="select" val="2"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(190,380)" name="Bit Extender">
-      <a name="in_width" val="16"/>
-      <a name="out_width" val="32"/>
-    </comp>
-    <comp lib="6" loc="(131,432)" name="Text">
-      <a name="text" val="s_inmExt"/>
-    </comp>
     <comp lib="6" loc="(915,358)" name="Text">
       <a name="text" val="m2"/>
     </comp>
-    <comp lib="0" loc="(660,510)" name="Splitter">
-      <a name="facing" val="south"/>
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="32"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
-      <a name="bit7" val="none"/>
-      <a name="bit8" val="none"/>
-      <a name="bit9" val="none"/>
-      <a name="bit10" val="none"/>
-      <a name="bit11" val="none"/>
-      <a name="bit12" val="1"/>
-      <a name="bit13" val="1"/>
-      <a name="bit14" val="1"/>
-      <a name="bit15" val="none"/>
-      <a name="bit16" val="none"/>
-      <a name="bit17" val="none"/>
-      <a name="bit18" val="none"/>
-      <a name="bit19" val="none"/>
-      <a name="bit20" val="none"/>
-      <a name="bit21" val="none"/>
-      <a name="bit22" val="none"/>
-      <a name="bit23" val="none"/>
-      <a name="bit24" val="none"/>
-      <a name="bit25" val="none"/>
-      <a name="bit26" val="none"/>
-      <a name="bit27" val="none"/>
-      <a name="bit28" val="none"/>
-      <a name="bit29" val="none"/>
-      <a name="bit30" val="2"/>
-      <a name="bit31" val="none"/>
-    </comp>
-    <comp lib="0" loc="(120,110)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="6" loc="(819,86)" name="Text">
-      <a name="text" val="clk"/>
-    </comp>
-    <comp lib="6" loc="(119,83)" name="Text">
-      <a name="text" val="branch"/>
-    </comp>
-    <comp lib="0" loc="(680,550)" name="Pin">
-      <a name="facing" val="north"/>
-      <a name="output" val="true"/>
-      <a name="width" val="3"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(511,603)" name="Text">
-      <a name="text" val="pc"/>
-    </comp>
     <comp lib="6" loc="(868,645)" name="Text">
       <a name="text" val="writeData"/>
-    </comp>
-    <comp lib="0" loc="(510,550)" name="Pin">
-      <a name="facing" val="north"/>
-      <a name="output" val="true"/>
-      <a name="width" val="16"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(550,120)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-      <a name="labelfont" val="SansSerif plain 6"/>
-    </comp>
-    <comp lib="0" loc="(960,110)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="3"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="6" loc="(785,386)" name="Text">
-      <a name="text" val="s_inmExt"/>
-    </comp>
-    <comp lib="6" loc="(962,84)" name="Text">
-      <a name="text" val="aluControl"/>
     </comp>
     <comp lib="0" loc="(370,280)" name="Splitter">
       <a name="fanout" val="1"/>
@@ -898,94 +963,138 @@
       <a name="bit30" val="none"/>
       <a name="bit31" val="none"/>
     </comp>
-    <comp lib="6" loc="(750,584)" name="Text">
-      <a name="text" val="op"/>
-    </comp>
-    <comp loc="(650,270)" name="SE"/>
-    <comp lib="0" loc="(910,110)" name="Pin">
-      <a name="facing" val="south"/>
+    <comp lib="0" loc="(1040,550)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="6" loc="(173,246)" name="Text">
-      <a name="text" val="s_pc_offset"/>
-      <a name="font" val="SansSerif plain 11"/>
-    </comp>
-    <comp lib="0" loc="(190,290)" name="Bit Extender">
-      <a name="in_width" val="16"/>
-      <a name="out_width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(350,110)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="2" loc="(140,250)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp loc="(500,290)" name="pc"/>
-    <comp lib="6" loc="(785,476)" name="Text">
-      <a name="text" val="s_alu_res"/>
-    </comp>
-    <comp lib="3" loc="(250,260)" name="Adder">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="6" loc="(247,345)" name="Text">
-      <a name="text" val="s_inmExt"/>
+    <comp lib="6" loc="(439,81)" name="Text">
+      <a name="text" val="clk"/>
     </comp>
     <comp lib="6" loc="(349,83)" name="Text">
       <a name="text" val="jump"/>
     </comp>
-    <comp lib="6" loc="(555,37)" name="Text">
-      <a name="text" val="instr"/>
+    <comp lib="0" loc="(80,210)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x0"/>
     </comp>
-    <comp loc="(1070,280)" name="ALU"/>
     <comp lib="0" loc="(640,120)" name="Pin">
       <a name="facing" val="south"/>
       <a name="width" val="32"/>
       <a name="tristate" val="false"/>
       <a name="labelfont" val="SansSerif plain 6"/>
     </comp>
-    <comp lib="0" loc="(820,110)" name="Pin">
-      <a name="facing" val="south"/>
-      <a name="tristate" val="false"/>
+    <comp lib="2" loc="(140,250)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="6" loc="(819,86)" name="Text">
+      <a name="text" val="en"/>
+    </comp>
+    <comp lib="6" loc="(951,343)" name="Text">
+      <a name="text" val="s_srcB"/>
     </comp>
     <comp lib="0" loc="(440,110)" name="Pin">
       <a name="facing" val="south"/>
       <a name="tristate" val="false"/>
     </comp>
-    <comp lib="0" loc="(80,210)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x0"/>
+    <comp lib="6" loc="(247,345)" name="Text">
+      <a name="text" val="s_inmExt"/>
+    </comp>
+    <comp lib="6" loc="(402,434)" name="Text">
+      <a name="text" val="pc_next"/>
+      <a name="font" val="SansSerif plain 11"/>
+    </comp>
+    <comp lib="0" loc="(910,110)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
     </comp>
     <comp loc="(840,270)" name="BR"/>
-    <comp lib="6" loc="(642,34)" name="Text">
-      <a name="text" val="readData"/>
+    <comp lib="2" loc="(930,330)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(350,110)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(1110,550)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
     </comp>
     <comp lib="6" loc="(133,227)" name="Text">
       <a name="text" val="m4"/>
+    </comp>
+    <comp lib="6" loc="(630,464)" name="Text">
+      <a name="text" val="m3"/>
+    </comp>
+    <comp lib="6" loc="(962,84)" name="Text">
+      <a name="text" val="aluControl"/>
     </comp>
     <comp lib="0" loc="(80,240)" name="Constant">
       <a name="width" val="32"/>
       <a name="value" val="0x4"/>
     </comp>
-    <comp lib="6" loc="(631,584)" name="Text">
-      <a name="text" val="f7"/>
+    <comp lib="0" loc="(510,550)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="16"/>
+      <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="2" loc="(650,430)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="select" val="2"/>
-      <a name="width" val="32"/>
+    <comp lib="0" loc="(660,510)" name="Splitter">
+      <a name="facing" val="south"/>
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="32"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="none"/>
+      <a name="bit8" val="none"/>
+      <a name="bit9" val="none"/>
+      <a name="bit10" val="none"/>
+      <a name="bit11" val="none"/>
+      <a name="bit12" val="1"/>
+      <a name="bit13" val="1"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="none"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="none"/>
+      <a name="bit26" val="none"/>
+      <a name="bit27" val="none"/>
+      <a name="bit28" val="none"/>
+      <a name="bit29" val="none"/>
+      <a name="bit30" val="2"/>
+      <a name="bit31" val="none"/>
     </comp>
-    <comp lib="6" loc="(864,265)" name="Text">
-      <a name="text" val="s_srcA"/>
+    <comp loc="(500,290)" name="pc"/>
+    <comp lib="6" loc="(642,34)" name="Text">
+      <a name="text" val="readData"/>
     </comp>
-    <comp lib="2" loc="(930,330)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="32"/>
+    <comp lib="0" loc="(960,110)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="3"/>
+      <a name="tristate" val="false"/>
     </comp>
-    <comp lib="6" loc="(1113,644)" name="Text">
-      <a name="text" val="aluRes"/>
+    <comp lib="6" loc="(785,386)" name="Text">
+      <a name="text" val="s_inmExt"/>
+    </comp>
+    <comp lib="0" loc="(190,380)" name="Bit Extender">
+      <a name="in_width" val="16"/>
+      <a name="out_width" val="32"/>
     </comp>
     <comp lib="0" loc="(690,270)" name="Splitter">
       <a name="fanout" val="3"/>
@@ -1024,46 +1133,500 @@
       <a name="bit30" val="none"/>
       <a name="bit31" val="none"/>
     </comp>
-    <comp lib="3" loc="(250,390)" name="Adder">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="6" loc="(682,584)" name="Text">
-      <a name="text" val="f3"/>
-    </comp>
-    <comp lib="0" loc="(870,550)" name="Pin">
-      <a name="facing" val="north"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-    </comp>
     <comp lib="0" loc="(750,550)" name="Pin">
       <a name="facing" val="north"/>
       <a name="output" val="true"/>
       <a name="width" val="7"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="6" loc="(232,234)" name="Text">
+      <a name="text" val="add1"/>
+    </comp>
     <comp lib="0" loc="(630,550)" name="Pin">
       <a name="facing" val="north"/>
       <a name="output" val="true"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="6" loc="(343,299)" name="Text">
-      <a name="text" val="m1"/>
-    </comp>
-    <comp lib="6" loc="(861,315)" name="Text">
-      <a name="text" val="s_src2"/>
-    </comp>
-    <comp lib="0" loc="(1040,550)" name="Pin">
-      <a name="facing" val="north"/>
-      <a name="tristate" val="false"/>
-    </comp>
     <comp lib="6" loc="(1038,584)" name="Text">
       <a name="text" val="zero"/>
+    </comp>
+    <comp lib="6" loc="(119,83)" name="Text">
+      <a name="text" val="branch"/>
+    </comp>
+    <comp lib="6" loc="(785,476)" name="Text">
+      <a name="text" val="s_alu_res"/>
+    </comp>
+    <comp lib="0" loc="(820,110)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="6" loc="(682,584)" name="Text">
+      <a name="text" val="f3"/>
+    </comp>
+    <comp lib="0" loc="(550,120)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+      <a name="labelfont" val="SansSerif plain 6"/>
     </comp>
     <comp lib="6" loc="(686,135)" name="Text">
       <a name="text" val="resSrc"/>
     </comp>
+    <comp lib="3" loc="(250,260)" name="Adder">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="6" loc="(173,246)" name="Text">
+      <a name="text" val="s_pc_offset"/>
+      <a name="font" val="SansSerif plain 11"/>
+    </comp>
     <comp lib="6" loc="(241,315)" name="Text">
       <a name="text" val="s_pc"/>
+    </comp>
+    <comp loc="(1070,280)" name="ALU"/>
+    <comp lib="6" loc="(131,432)" name="Text">
+      <a name="text" val="s_inmExt"/>
+    </comp>
+    <comp loc="(650,270)" name="SE"/>
+    <comp lib="6" loc="(631,584)" name="Text">
+      <a name="text" val="f7"/>
+    </comp>
+    <comp lib="0" loc="(680,160)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="6" loc="(1113,644)" name="Text">
+      <a name="text" val="aluRes"/>
+    </comp>
+    <comp lib="6" loc="(518,133)" name="Text">
+      <a name="text" val="immSrc"/>
+    </comp>
+    <comp lib="6" loc="(864,265)" name="Text">
+      <a name="text" val="s_srcA"/>
+    </comp>
+    <comp lib="6" loc="(343,299)" name="Text">
+      <a name="text" val="m1"/>
+    </comp>
+    <comp lib="0" loc="(870,550)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(680,550)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="3"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+  </circuit>
+  <circuit name="DM">
+    <a name="circuit" val="DM"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <path d="M65,52 Q69,62 73,52" fill="none" stroke="#808080" stroke-width="2"/>
+      <rect fill="none" height="128" stroke="#000000" stroke-width="2" width="90" x="50" y="51"/>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="68" y="93">addr</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="68" y="152">data</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="126" y="93">out</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="70" y="67">clk</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="120" y="66">en</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="98" y="119">DM</text>
+      <circ-port height="8" pin="310,110" width="8" x="66" y="46"/>
+      <circ-port height="8" pin="310,140" width="8" x="116" y="46"/>
+      <circ-port height="8" pin="310,180" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="310,250" width="8" x="46" y="146"/>
+      <circ-port height="10" pin="430,130" width="10" x="135" y="85"/>
+      <circ-anchor facing="east" height="6" width="6" x="137" y="87"/>
+    </appear>
+    <comp lib="0" loc="(310,180)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(310,140)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(430,130)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(310,110)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(310,250)" name="Pin">
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+    </comp>
+  </circuit>
+  <circuit name="IM">
+    <a name="circuit" val="IM"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <rect fill="none" height="100" stroke="#000000" stroke-width="2" width="70" x="50" y="55"/>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="85" y="82">IM</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="61" y="122">pc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="102" y="122">instr</text>
+      <circ-port height="8" pin="220,190" width="8" x="46" y="116"/>
+      <circ-port height="10" pin="390,190" width="10" x="115" y="115"/>
+      <circ-anchor facing="east" height="6" width="6" x="117" y="117"/>
+    </appear>
+    <comp lib="0" loc="(390,190)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(220,190)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+    </comp>
+  </circuit>
+  <circuit name="Memory">
+    <a name="circuit" val="Memory"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <path d="M65,51 Q69,61 73,51" fill="none" stroke="#808080" stroke-width="2"/>
+      <rect fill="none" height="101" stroke="#000000" stroke-width="2" width="120" x="50" y="49"/>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="68" y="82">addr</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="67" y="104">data</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="60" y="122">pc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="69" y="67">clk</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="151" y="63">en</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="154" y="102">out</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="151" y="122">instr</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="109" y="63">Memory</text>
+      <circ-port height="8" pin="220,180" width="8" x="66" y="46"/>
+      <circ-port height="8" pin="220,210" width="8" x="146" y="46"/>
+      <circ-port height="8" pin="220,250" width="8" x="46" y="76"/>
+      <circ-port height="8" pin="220,320" width="8" x="46" y="96"/>
+      <circ-port height="8" pin="220,390" width="8" x="46" y="116"/>
+      <circ-port height="10" pin="530,260" width="10" x="165" y="95"/>
+      <circ-port height="10" pin="530,350" width="10" x="165" y="115"/>
+      <circ-anchor facing="east" height="6" width="6" x="167" y="97"/>
+    </appear>
+    <wire from="(390,350)" to="(400,350)"/>
+    <wire from="(470,350)" to="(530,350)"/>
+    <wire from="(220,180)" to="(310,180)"/>
+    <wire from="(220,390)" to="(390,390)"/>
+    <wire from="(220,210)" to="(360,210)"/>
+    <wire from="(220,320)" to="(290,320)"/>
+    <wire from="(220,250)" to="(290,250)"/>
+    <wire from="(310,180)" to="(310,220)"/>
+    <wire from="(290,250)" to="(290,260)"/>
+    <wire from="(390,350)" to="(390,390)"/>
+    <wire from="(360,210)" to="(360,220)"/>
+    <wire from="(380,260)" to="(530,260)"/>
+    <comp loc="(380,260)" name="DM"/>
+    <comp lib="0" loc="(530,260)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(220,210)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(220,180)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(220,320)" name="Pin">
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(220,250)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(530,350)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp loc="(470,350)" name="IM"/>
+    <comp lib="0" loc="(220,390)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+    </comp>
+  </circuit>
+  <circuit name="mainDeco">
+    <a name="circuit" val="mainDeco"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <rect fill="none" height="120" stroke="#000000" stroke-width="2" width="251" x="120" y="101"/>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="170" y="197">branch</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="201" y="208">jump</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="230" y="197">resSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="261" y="210">memWrite</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="290" y="196">aluSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="348" y="197">immSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="319" y="211">regWrite</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="142" y="210">aluOp</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="134" y="152">op</text>
+      <text font-family="SansSerif" font-size="13" text-anchor="middle" x="247" y="128">Main Decoder</text>
+      <circ-port height="8" pin="270,190" width="8" x="116" y="146"/>
+      <circ-port height="10" pin="450,110" width="10" x="165" y="215"/>
+      <circ-port height="10" pin="450,150" width="10" x="195" y="215"/>
+      <circ-port height="10" pin="450,180" width="10" x="225" y="215"/>
+      <circ-port height="10" pin="450,210" width="10" x="255" y="215"/>
+      <circ-port height="10" pin="450,240" width="10" x="285" y="215"/>
+      <circ-port height="10" pin="450,270" width="10" x="345" y="215"/>
+      <circ-port height="10" pin="450,300" width="10" x="315" y="215"/>
+      <circ-port height="10" pin="450,330" width="10" x="135" y="215"/>
+      <circ-anchor facing="east" height="6" width="6" x="167" y="217"/>
+    </appear>
+    <comp lib="6" loc="(420,305)" name="Text">
+      <a name="text" val="regWrite"/>
+    </comp>
+    <comp lib="6" loc="(423,115)" name="Text">
+      <a name="text" val="branch"/>
+    </comp>
+    <comp lib="0" loc="(450,240)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(450,210)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(421,276)" name="Text">
+      <a name="text" val="immSrc"/>
+    </comp>
+    <comp lib="6" loc="(423,248)" name="Text">
+      <a name="text" val="aluSrc"/>
+    </comp>
+    <comp lib="6" loc="(422,187)" name="Text">
+      <a name="text" val="resSrc"/>
+    </comp>
+    <comp lib="0" loc="(450,300)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(450,110)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(270,190)" name="Pin">
+      <a name="width" val="7"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(450,180)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(426,332)" name="Text">
+      <a name="text" val="aluOp"/>
+    </comp>
+    <comp lib="0" loc="(450,330)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(429,155)" name="Text">
+      <a name="text" val="jump"/>
+    </comp>
+    <comp lib="6" loc="(414,218)" name="Text">
+      <a name="text" val="memWrite"/>
+    </comp>
+    <comp lib="0" loc="(450,270)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(450,150)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+  </circuit>
+  <circuit name="ALUDeco">
+    <a name="circuit" val="ALUDeco"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <rect fill="none" height="96" stroke="#000000" stroke-width="2" width="169" x="50" y="55"/>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="63" y="74">op</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="61" y="94">f7</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="60" y="113">f3</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="71" y="132">aluOp</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="180" y="139">aluControl</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="137" y="79">ALU DECODER</text>
+      <circ-port height="8" pin="150,230" width="8" x="46" y="66"/>
+      <circ-port height="8" pin="150,270" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="150,310" width="8" x="46" y="106"/>
+      <circ-port height="8" pin="150,350" width="8" x="46" y="126"/>
+      <circ-port height="10" pin="360,230" width="10" x="175" y="145"/>
+      <circ-anchor facing="east" height="6" width="6" x="177" y="147"/>
+    </appear>
+    <wire from="(150,350)" to="(150,360)"/>
+    <comp lib="0" loc="(360,230)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="3"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(150,270)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(150,230)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(150,310)" name="Pin">
+      <a name="width" val="3"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(150,350)" name="Pin">
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+    </comp>
+  </circuit>
+  <circuit name="UC">
+    <a name="circuit" val="UC"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <rect fill="none" height="140" stroke="#000000" stroke-width="2" width="260" x="51" y="50"/>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="60" y="74">op</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="61" y="114">f7</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="61" y="93">f3</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="67" y="130">zero</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="249" y="181">aluControl</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="70" y="180">branch</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="101" y="167">jump</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="163" y="169">resSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="282" y="168">memWrite</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="220" y="168">aluSrc</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="191" y="180">regWrite</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="131" y="178">immSrc</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="175" y="101">Control Unit</text>
+      <circ-port height="8" pin="370,150" width="8" x="46" y="66"/>
+      <circ-port height="8" pin="360,300" width="8" x="46" y="106"/>
+      <circ-port height="8" pin="360,330" width="8" x="46" y="86"/>
+      <circ-port height="10" pin="580,430" width="10" x="245" y="185"/>
+      <circ-port height="10" pin="640,430" width="10" x="65" y="185"/>
+      <circ-port height="10" pin="670,430" width="10" x="95" y="185"/>
+      <circ-port height="10" pin="700,430" width="10" x="155" y="185"/>
+      <circ-port height="10" pin="730,430" width="10" x="275" y="185"/>
+      <circ-port height="10" pin="760,430" width="10" x="215" y="185"/>
+      <circ-port height="10" pin="790,430" width="10" x="185" y="185"/>
+      <circ-port height="10" pin="820,430" width="10" x="125" y="185"/>
+      <circ-port height="8" pin="360,380" width="8" x="46" y="126"/>
+      <circ-anchor facing="east" height="6" width="6" x="247" y="187"/>
+    </appear>
+    <wire from="(400,150)" to="(400,220)"/>
+    <wire from="(360,300)" to="(450,300)"/>
+    <wire from="(400,150)" to="(590,150)"/>
+    <wire from="(420,280)" to="(450,280)"/>
+    <wire from="(370,150)" to="(400,150)"/>
+    <wire from="(430,250)" to="(610,250)"/>
+    <wire from="(430,340)" to="(450,340)"/>
+    <wire from="(580,360)" to="(580,430)"/>
+    <wire from="(420,240)" to="(420,280)"/>
+    <wire from="(370,320)" to="(370,330)"/>
+    <wire from="(400,220)" to="(410,220)"/>
+    <wire from="(360,330)" to="(370,330)"/>
+    <wire from="(370,320)" to="(450,320)"/>
+    <wire from="(610,220)" to="(610,250)"/>
+    <wire from="(670,220)" to="(670,430)"/>
+    <wire from="(700,220)" to="(700,430)"/>
+    <wire from="(730,220)" to="(730,430)"/>
+    <wire from="(760,220)" to="(760,430)"/>
+    <wire from="(640,220)" to="(640,430)"/>
+    <wire from="(430,250)" to="(430,340)"/>
+    <wire from="(820,220)" to="(820,430)"/>
+    <wire from="(790,220)" to="(790,430)"/>
+    <comp lib="0" loc="(640,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(730,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(790,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(670,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(360,380)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(760,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(360,330)" name="Pin">
+      <a name="width" val="3"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp loc="(640,220)" name="mainDeco"/>
+    <comp lib="0" loc="(820,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(580,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="3"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(410,220)" name="Splitter">
+      <a name="facing" val="south"/>
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="7"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="none"/>
+    </comp>
+    <comp lib="0" loc="(360,300)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp loc="(580,360)" name="ALUDeco"/>
+    <comp lib="0" loc="(370,150)" name="Pin">
+      <a name="width" val="7"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(700,430)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="labelloc" val="east"/>
     </comp>
   </circuit>
 </project>
