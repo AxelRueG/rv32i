@@ -18,7 +18,7 @@
 module mainDeco(
     input [6:0] op,
     output wire branch,
-    output wire jump,
+    output wire [1:0] jump,
     output [1:0] resSrc,
     output wire memWrite,
     output wire aluSrc,
@@ -28,15 +28,13 @@ module mainDeco(
 );
 
     reg branchAux;
-    reg jumpAux;
+    reg [2:0] jumpAux;
     reg [1:0] resSrcAux;
     reg memWriteAux;
     reg aluSrcAux;
     reg [1:0] immSrcAux;
     reg regWriteAux;
     reg [1:0] aluOpAux;
-
-
 
     always @(*)
     begin
@@ -45,7 +43,7 @@ module mainDeco(
             3:
             begin
                 branchAux = 0;
-                jumpAux = 0;
+                jumpAux = 2'b00;
                 resSrcAux = 2'b01;
                 memWriteAux = 0;
                 aluSrcAux = 1;
@@ -57,7 +55,7 @@ module mainDeco(
             35:
             begin
                 branchAux = 0;
-                jumpAux = 0;
+                jumpAux = 2'b01;
                 resSrcAux = 2'bx;
                 memWriteAux = 1;
                 aluSrcAux = 1;
@@ -69,7 +67,7 @@ module mainDeco(
             51:
             begin
                 branchAux = 0;
-                jumpAux = 0;
+                jumpAux = 2'b01;
                 resSrcAux = 2'b00;
                 memWriteAux = 0;
                 aluSrcAux = 0;
@@ -81,7 +79,7 @@ module mainDeco(
             99:
             begin
                 branchAux = 1;
-                jumpAux = 0;
+                jumpAux = 2'b01;
                 resSrcAux = 2'bx;
                 memWriteAux = 0;
                 aluSrcAux = 0;
@@ -93,7 +91,7 @@ module mainDeco(
             19:
             begin
                 branchAux = 0;
-                jumpAux = 0;
+                jumpAux = 2'b01;
                 resSrcAux = 2'b00;
                 memWriteAux = 0;
                 aluSrcAux = 1;
@@ -105,7 +103,7 @@ module mainDeco(
             111:
             begin
                 branchAux = 0;
-                jumpAux = 1;
+                jumpAux = 2'b10;
                 resSrcAux = 2'b10;
                 memWriteAux = 0;
                 aluSrcAux = 1'bx;
@@ -116,7 +114,7 @@ module mainDeco(
             default:
             begin
                 branchAux = 1'bx;
-                jumpAux = 1'bx;
+                jumpAux = 2'b11;
                 resSrcAux = 2'bx;
                 memWriteAux = 1'bx;
                 aluSrcAux = 1'bx;
