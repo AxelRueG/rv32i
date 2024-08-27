@@ -108,7 +108,7 @@ module DataPath (
     Mux4x1 m3 (
         .e1(s_alu_res),
         .e2(readData),
-        .e3(32'b0),
+        .e3(s_immExt),
         .e4(32'b0),
         .sel(resultSrc),
         .sal(s_wd3)
@@ -120,7 +120,7 @@ module DataPath (
     assign f3 = instr[14:12];
     assign f7 = instr[30];
     assign op = instr[6:0];
-
+    assign writeData = s_src2;
 
 
 endmodule
