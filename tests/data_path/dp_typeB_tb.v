@@ -5,7 +5,7 @@ module dp_tpyeB_tb;
     
     // inputs
     reg branch;
-    reg jump;
+    reg [1:0] jump;
     reg clk;
     reg [31:0] readData;
     reg [1:0] resultSrc;
@@ -60,11 +60,11 @@ module dp_tpyeB_tb;
         en este test, vamos a probar la funcionalidad de las operaciones de tipo B (beq)
         para ello vamos a usar
         - aluOP -> comparacion
-        - jump -> 1
+        - jump -> 01
         - branch -> 1, para producir el salto (de 9 lineas -> 36 bytes) 
         - 
         */
-        jump = 1; // enable pc
+        jump = 2'b01; // enable pc
 
         // --- COMPROBAMOS QUE EJECUTE EL SALTO ------------------------------------
         branch = 1;

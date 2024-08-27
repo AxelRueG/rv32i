@@ -54,7 +54,7 @@ module data_path_tb;
         $dumpfile("./waves/data_path_tb.vcd");
         $dumpvars(0, data_path_tb);
 
-        jump = 1; // enable pc
+        jump = 2'b01; // enable pc
 
         // constantes
         regWrite = 1;

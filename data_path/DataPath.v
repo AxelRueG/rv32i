@@ -11,7 +11,7 @@ module DataPath (
     // INPUTS
     // ---------------------------------------------------------------------------------------------
     input wire branch,
-    input wire jump,
+    input wire [1:0] jump,
     input wire clk,
     input wire [31:0] readData,
     input wire [1:0] resultSrc,
@@ -36,8 +36,9 @@ module DataPath (
     // --- intern signals --------------------------------------------------------------------------
     wire [15:0] s_pck;
     wire [31:0] s_pck1;
-    wire [31:0] s_pc_0;
     wire [31:0] s_pc_offset;
+    wire [31:0] s_pc_next;
+    wire [31:0] s_pc_jump;
 
     wire [31:0] s_alu_res;
     wire [31:0] s_srcA;
@@ -50,6 +51,7 @@ module DataPath (
     // constantes
     reg [31:0] cuatro = 4;
     reg [31:0] addr_reset = 0;
+    reg [31:0] addr_excep = 100;
 
     // --- conections ------------------------------------------------------------------------------
     // FETCH    
@@ -63,19 +65,27 @@ module DataPath (
     Adder add1 (
         .op1(s_pc_offset),
         .op2({16'b0, s_pck}),
-        .sal(s_pck1)
+        .sal(s_pc_next)
     );
 
-    Mux2x1 m1 (
+    Adder add2 (
+        .op1(s_immExt),
+        .op2({16'b0, s_pck}),
+        .sal(s_pc_jump)
+    );
+
+    Mux4x1 m1 (
         .e1(addr_reset),
-        .e2(s_pck1),
+        .e2(s_pc_next),
+        .e3(s_pc_jump),
+        .e4(addr_excep),
         .sel(jump),
-        .sal(s_pc_0)
+        .sal(s_pck1)
     );
 
     PC program_counter (
         .clk(clk),
-        .pcNext(s_pc_0[15:0]),
+        .pcNext(s_pck1[15:0]),
         .pc(s_pck)
     );
 
@@ -117,7 +127,7 @@ module DataPath (
         .e1(s_alu_res),
         .e2(readData),
         .e3(s_immExt),
-        .e4(32'b0),
+        .e4(s_pc_next),
         .sel(resultSrc),
         .sal(s_wd3)
     );
