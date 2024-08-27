@@ -37,6 +37,7 @@ module DataPath (
     wire [15:0] s_pck;
     wire [31:0] s_pck1;
     wire [31:0] s_pc_0;
+    wire [31:0] s_pc_offset;
 
     wire [31:0] s_alu_res;
     wire [31:0] s_srcA;
@@ -52,8 +53,15 @@ module DataPath (
 
     // --- conections ------------------------------------------------------------------------------
     // FETCH    
+    Mux2x1 m4 (
+        .e1(cuatro),
+        .e2(s_immExt),
+        .sel(branch),
+        .sal(s_pc_offset)
+    );
+
     Adder add1 (
-        .op1(cuatro),
+        .op1(s_pc_offset),
         .op2({16'b0, s_pck}),
         .sal(s_pck1)
     );
