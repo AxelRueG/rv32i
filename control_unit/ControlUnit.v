@@ -27,6 +27,8 @@ module ControlUnit (
     wire s_aluSrc;
     wire s_regWrite;
 
+    reg r_branch; // salida, incluye la comparacion con el resultado de la ALU
+
     mainDeco main_decode (
         .op(op),
         .branch(s_branch),
@@ -47,11 +49,15 @@ module ControlUnit (
         .aluControl(aluControl)
     );
 
+    always @(*) begin
+        r_branch = s_branch && zero;
+    end
+
     assign aluControl = s_aluControl;
     assign resSrc = s_resSrc;
     assign jump = s_jump;
     assign immSrc = s_immSrc;
-    assign branch = s_branch;
+    assign branch = r_branch;
     assign memWrite = s_memWrite;
     assign aluSrc = s_aluSrc;
     assign regWrite = s_regWrite;
