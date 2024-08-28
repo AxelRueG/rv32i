@@ -6,7 +6,8 @@ module rv32i (
     input wire clk,
     output wire [15:0] instrAddr,
     output wire [31:0] aluResult,
-    output wire [31:0] memoryOut
+    output wire [31:0] memoryOut,
+    output wire [31:0] instruction
 );
 
     wire f7, zero, branch, regWrite, aluSrc, memWrite;
@@ -70,5 +71,6 @@ module rv32i (
     assign instrAddr = pc;
     assign aluResult = aluRes;
     assign memoryOut = dataRead;
+    assign instruction = instr;
     
 endmodule
