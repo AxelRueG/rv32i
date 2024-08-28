@@ -8,6 +8,7 @@ module rv32i_tb1;
     wire [15:0] instrAddr;
     wire [31:0] aluResult;
     wire [31:0] memoryOut;
+    wire [31:0] memoryIn;
     wire [31:0] instruction;
 
     integer iter;
@@ -17,6 +18,7 @@ module rv32i_tb1;
         .instrAddr(instrAddr),
         .aluResult(aluResult),
         .memoryOut(memoryOut),
+        .memoryIn(memoryIn),
         .instruction(instruction)
     );
 

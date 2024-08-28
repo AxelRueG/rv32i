@@ -138,7 +138,7 @@ module DataPath (
     assign f3 = instr[14:12];
     assign f7 = instr[30];
     assign op = instr[6:0];
-    assign writeData = s_src2;
+    assign writeData = s_srcB;
 
 
 endmodule

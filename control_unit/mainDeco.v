@@ -43,7 +43,7 @@ module mainDeco(
             3:
             begin
                 branchAux = 0;
-                jumpAux = 2'b00;
+                jumpAux = 2'b01;
                 resSrcAux = 2'b01;
                 memWriteAux = 0;
                 aluSrcAux = 1;
