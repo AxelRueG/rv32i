@@ -24,7 +24,7 @@ module data_path_tb;
     wire [31:0] writeData;
     wire [15:0] pc;
 
-    DataPath uut (
+    DataPath uut (  
         .branch(branch),
         .jump(jump),
         .clk(clk),

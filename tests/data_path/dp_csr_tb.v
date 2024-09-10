@@ -5,7 +5,6 @@ module dp_csr_tb;
     
     // inputs
     reg branch;
-    reg op_m;
     reg [1:0] jump;
     reg clk;
     reg [31:0] readData;
@@ -30,7 +29,6 @@ module dp_csr_tb;
 
     DataPath uut (
         .branch(branch),
-        .op_m(op_m),
         .jump(jump),
         .clk(clk),
         .readData(readData),
@@ -73,7 +71,6 @@ module dp_csr_tb;
         6. hacemos un ultimo guardado        
         */
         csr_w = 0;
-        op_m = 0;
         mocsr = 2'b00;
         csr_inm = 1'bx;
 

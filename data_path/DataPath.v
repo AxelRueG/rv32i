@@ -5,6 +5,7 @@
 `include "./data_path/BR.v"
 `include "./data_path/ALU.v"
 `include "./data_path/SE.v"
+`include "./data_path/CSR.v"
 
 module DataPath (
     // ---------------------------------------------------------------------------------------------
@@ -20,6 +21,9 @@ module DataPath (
     input wire regWrite,
     input wire aluSrc,
     input wire [2:0] aluControl,
+    input wire csr_w,
+    input wire csr_inm,
+    input wire [1:0] mocsr,
 
     // ---------------------------------------------------------------------------------------------
     // OUTPUTS
@@ -47,6 +51,10 @@ module DataPath (
     wire [31:0] s_inmExt;
     wire [31:0] s_src2;
     wire [31:0] s_wd3;
+
+    wire [31:0] s_csr_wd;
+    wire [31:0] s_csr_rd;
+    wire [31:0] s_read_data;
 
     // constantes
     reg [31:0] cuatro = 4;
@@ -125,11 +133,38 @@ module DataPath (
 
     Mux4x1 m3 (
         .e1(s_alu_res),
-        .e2(readData),
+        .e2(s_read_data),
         .e3(s_inmExt),
         .e4(s_pc_next),
         .sel(resultSrc),
         .sal(s_wd3)
+    );
+
+    // CSR
+    Mux2x1 m5 (
+        .e1(s_srcA),
+        .e2({27'b0, instr[19:15]}),
+        .sel(csr_inm),
+        .sal(s_csr_wd)
+    );
+
+    CSR csr (
+        .clk(clk),
+        .csr_w(csr_w),
+        .csr(instr[31:20]),
+        .wd(s_csr_wd),
+        .rd(s_csr_rd)
+    );
+
+    // necesitamos un mux para seleccionar la data de csr o la data leida de memoria
+
+    Mux4x1 m6 (
+        .e1(readData),
+        .e2(s_csr_rd),
+        .e3({16'b0, s_pck}),
+        .e4(32'bx),
+        .sel(mocsr),
+        .sal(s_read_data)
     );
 
     // --- outputs ---------------------------------------------------------------------------------
