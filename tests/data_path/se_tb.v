@@ -5,12 +5,12 @@ module moduleName;
     
     reg [31:0] instr;
     reg [1:0] src;
-    wire [31:0] immExt;
+    wire [31:0] inmExt;
 
     SE uut (
         .instr(instr),
         .src(src),
-        .immExt(immExt)
+        .inmExt(inmExt)
     );
 
     initial begin
@@ -24,19 +24,19 @@ module moduleName;
         // B-type: 0000 0000 0000 0000 0000 1100 0100 0110 -> 32'h00000C46
         // J-type: 0000 0000 0000 0000 1000 0100 0100 0010 -> 32'h00088442
         #10
-        $display("R-type: %h", immExt);
+        $display("R-type: %h", inmExt);
         src = 2'b00;
         #10
-        $display("I-type: %h", immExt);
+        $display("I-type: %h", inmExt);
         src = 2'b01;
         #10
-        $display("S-type: %h", immExt);
+        $display("S-type: %h", inmExt);
         src = 2'b10;
         #10
-        $display("B-type: %h", immExt);
+        $display("B-type: %h", inmExt);
         src = 2'b11;
         #10
-        $display("J-type: %h", immExt);
+        $display("J-type: %h", inmExt);
         
         $finish;
 

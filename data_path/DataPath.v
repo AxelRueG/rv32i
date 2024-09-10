@@ -44,7 +44,7 @@ module DataPath (
     wire [31:0] s_srcA;
     wire [31:0] s_srcB;
 
-    wire [31:0] s_immExt;
+    wire [31:0] s_inmExt;
     wire [31:0] s_src2;
     wire [31:0] s_wd3;
 
@@ -57,7 +57,7 @@ module DataPath (
     // FETCH    
     Mux2x1 m4 (
         .e1(cuatro),
-        .e2(s_immExt),
+        .e2(s_inmExt),
         .sel(branch),
         .sal(s_pc_offset)
     );
@@ -69,7 +69,7 @@ module DataPath (
     );
 
     Adder add2 (
-        .op1(s_immExt),
+        .op1(s_inmExt),
         .op2({16'b0, s_pck}),
         .sal(s_pc_jump)
     );
@@ -113,12 +113,12 @@ module DataPath (
     SE sign_extension (
         .instr(instr),
         .src(inmSrc),
-        .immExt(s_immExt)
+        .inmExt(s_inmExt)
     );
 
     Mux2x1 m2 (
         .e1(s_srcB),
-        .e2(s_immExt),
+        .e2(s_inmExt),
         .sel(aluSrc),
         .sal(s_src2)
     );
@@ -126,7 +126,7 @@ module DataPath (
     Mux4x1 m3 (
         .e1(s_alu_res),
         .e2(readData),
-        .e3(s_immExt),
+        .e3(s_inmExt),
         .e4(s_pc_next),
         .sel(resultSrc),
         .sal(s_wd3)

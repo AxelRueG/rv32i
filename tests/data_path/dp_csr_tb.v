@@ -16,7 +16,7 @@ module dp_csr_tb;
     reg aluSrc;
     reg [2:0] aluControl;
     reg csr_w;
-    reg csr_imm;
+    reg csr_inm;
     reg [1:0] mocsr;
 
     // outputs
@@ -41,7 +41,7 @@ module dp_csr_tb;
         .aluSrc(aluSrc),
         .aluControl(aluControl),
         .csr_w(csr_w),
-        .csr_imm(csr_imm),
+        .csr_inm(csr_inm),
         .mocsr(mocsr),
 
         .aluRes(aluRes),
@@ -75,7 +75,7 @@ module dp_csr_tb;
         csr_w = 0;
         op_m = 0;
         mocsr = 2'b00;
-        csr_imm = 1'bx;
+        csr_inm = 1'bx;
 
         // -- 1: instruction type-I save an inmediate in a op_m --
         jump = 2'b01; // normal way
@@ -90,19 +90,19 @@ module dp_csr_tb;
 
         // -- 2: thow and exception, this exception save in x1 -> 1
         csr_w = 1;            // enable writing in CSR
-        csr_imm = 0;
+        csr_inm = 0;
         regWrite = 1;         // disable writing in REGISTERS  
         inmSrc = 2'bxx;       // in theory I dont need extend nothing
         aluControl = 3'b111;  // no ALU op
         aluSrc = 0;           // use the inmediate as srcB
-        resultSrc = 2'b01;    // save the imm
+        resultSrc = 2'b01;    // save the inm
         instr = 32'h00551073; // 32'h0000d2f3
         mocsr = 1;
         #10
 
         // -- 3: check values
         csr_w = 0;            // enable writing in CSR
-        csr_imm = 0;
+        csr_inm = 0;
         regWrite = 0; // enable write in op_m  
         inmSrc = 2'b00; // signed extension of type-I
         aluControl = 3'b000; // add
@@ -113,7 +113,7 @@ module dp_csr_tb;
         #10
 
         // -- 4:  check csrrwi
-        csr_imm = 1; // uso el inmediato
+        csr_inm = 1; // uso el inmediato
         csr_w = 1; // activo la escritura en csr
         regWrite = 1; // la salida del csr se guarda en un registro
         aluControl = 3'bx;
@@ -125,7 +125,7 @@ module dp_csr_tb;
 
         // -- 3: check values
         csr_w = 0;            // enable writing in CSR
-        csr_imm = 0;
+        csr_inm = 0;
         regWrite = 0; // enable write in op_m  
         inmSrc = 2'b00; // signed extension of type-I
         aluControl = 3'b000; // add

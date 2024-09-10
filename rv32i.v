@@ -12,7 +12,7 @@ module rv32i (
 );
 
     wire f7, zero, branch, regWrite, aluSrc, memWrite;
-    wire [1:0] resSrc, jump, immSrc;
+    wire [1:0] resSrc, jump, inmSrc;
     wire [2:0] aluControl, f3;
     wire [6:0] op;
     wire [15:0] pc;
@@ -30,7 +30,7 @@ module rv32i (
         .aluControl(aluControl),
         .resSrc(resSrc),
         .jump(jump),
-        .immSrc(immSrc),
+        .inmSrc(inmSrc),
         .branch(branch),
         .memWrite(memWrite),
         .aluSrc(aluSrc),
@@ -43,7 +43,7 @@ module rv32i (
         .clk(clk),
         .readData(dataRead),
         .resultSrc(resSrc),
-        .inmSrc(immSrc),
+        .inmSrc(inmSrc),
         .instr(instr),
         .regWrite(regWrite),
         .aluSrc(aluSrc),
