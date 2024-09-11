@@ -22,7 +22,7 @@ module BR(
     // activacion por cambio de flanco
     always @(posedge clk)
     begin
-        if(we)
+        if(we && a3 != 0)
         begin
             regBank[a3] <= wd3;
         end

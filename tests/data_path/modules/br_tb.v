@@ -54,6 +54,9 @@ module br_tb;
         a3 = 21;
         wd3 = 32'h00000abc;
         #10
+        a3 = 0;
+        wd3 = 32'hffffffff;
+        #10
 
         $display("\nupdating...\n");
         we = 0;
