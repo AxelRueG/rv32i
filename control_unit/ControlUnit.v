@@ -11,7 +11,6 @@ module ControlUnit (
     output wire [2:0] aluControl,
     output wire [1:0] resSrc,
     output wire [1:0] jump,
-    output wire [1:0] inmSrc,
     output wire branch,
     output wire memWrite,
     output wire aluSrc,
@@ -46,7 +45,6 @@ module ControlUnit (
         .resSrc(s_resSrc),
         .memWrite(s_memWrite),
         .aluSrc(s_aluSrc),
-        .inmSrc(s_inmSrc),
         .regWrite(s_regWrite),
         .aluOp(s_aluOpe),
         .mocsr(s_mocsr)
@@ -75,7 +73,6 @@ module ControlUnit (
     assign aluControl = s_aluControl;
     assign resSrc = s_resSrc;
     assign jump = s_jump;
-    assign inmSrc = s_inmSrc;
     assign branch = r_branch;
     assign memWrite = s_memWrite | s_csr_rd;
     assign aluSrc = s_aluSrc;

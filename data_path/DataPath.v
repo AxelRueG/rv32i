@@ -16,7 +16,7 @@ module DataPath (
     input wire clk,
     input wire [31:0] readData,
     input wire [1:0] resultSrc,
-    input wire [1:0] inmSrc,
+    // input wire [1:0] inmSrc,
     input wire [31:0] instr,
     input wire regWrite,
     input wire aluSrc,
@@ -120,7 +120,7 @@ module DataPath (
     // TYPE-I
     SE sign_extension (
         .instr(instr),
-        .src(inmSrc),
+        // .src(inmSrc),
         .inmExt(s_inmExt)
     );
 

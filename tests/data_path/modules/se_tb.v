@@ -4,37 +4,39 @@
 module moduleName;
     
     reg [31:0] instr;
-    reg [1:0] src;
     wire [31:0] inmExt;
 
     SE uut (
         .instr(instr),
-        .src(src),
         .inmExt(inmExt)
     );
 
     initial begin
         
-        instr = 32'h44208380; // 0100010 00010 00001 000 00111 0000000
-                              // 0100 0100 0010 0000 1000 0011 1000 0000
+        // 32'h44208380 => 0100 0100 0010 0000 1000 0011 1000 0000
 
         // R-type: nada
         // I-type: 0000 0000 0000 0000 0000 0100 0100 0010 -> 32'h00000442
-        // S-type: 0000 0000 0000 0000 0000 0100 0100 0111 -> 32'h00000447
+        // lw:     0000 0000 0000 0000 0000 0100 0100 0010 -> 32'h00000442
+        // sw:     0000 0000 0000 0000 0000 0100 0100 0111 -> 32'h00000447
         // B-type: 0000 0000 0000 0000 0000 1100 0100 0110 -> 32'h00000C46
-        // J-type: 0000 0000 0000 0000 1000 0100 0100 0010 -> 32'h00088442
+        // J-type: 0000 0000 0000 0000 1000 0100 0100 0010 -> 32'h00008442
+        instr = 32'h442083b3;
         #10
         $display("R-type: %h", inmExt);
-        src = 2'b00;
+        instr = 32'h44208393;
         #10
         $display("I-type: %h", inmExt);
-        src = 2'b01;
+        instr = 32'h44208383;
         #10
-        $display("S-type: %h", inmExt);
-        src = 2'b10;
+        $display("lw: %h", inmExt);
+        instr = 32'h442083a3;
+        #10
+        $display("sw: %h", inmExt);
+        instr = 32'h442083e3;
         #10
         $display("B-type: %h", inmExt);
-        src = 2'b11;
+        instr = 32'h442083ef;
         #10
         $display("J-type: %h", inmExt);
         
