@@ -4,12 +4,12 @@
 | branch | jump | resSrc | memWrite | aluSrc | inmSrc | regWrite |aluOp  | mocsr |
 |--------|------|--------|----------|--------|--------|----------|-------|-------|
 | 0      | 0    | 2'b01  | 0        | 1      | 2'b00  | 1        | 2'b00 | 2'b00 |  LW     (3)
-| 0      | 0    |        | 1        | 1      | 2'b01  | 0        | 2'b00 | 2'b00 |  SW     (35)
-| 0      | 0    | 2'b00  | 0        | 0      |        | 1        | 2'b10 | 2'b00 |  R-type (51)
-| 1      | 0    |        | 0        | 0      | 2'b10  | 0        | 2'b01 | 2'b00 |  B-type (99)
+| 0      | 0    | 2'bxx  | 1        | 1      | 2'b01  | 0        | 2'b00 | 2'b00 |  SW     (35)
+| 0      | 0    | 2'b00  | 0        | 0      | 2'bxx  | 1        | 2'b10 | 2'b00 |  R-type (51)
+| 1      | 0    | 2'bxx  | 0        | 0      | 2'b10  | 0        | 2'b01 | 2'b00 |  B-type (99)
 | 0      | 0    | 2'b00  | 0        | 1      | 2'b00  | 1        | 2'b10 | 2'b00 |  I-Type (19)
-| 0      | 1    | 2'b10  | 0        |        | 2'b11  | 1        |       | 2'b00 |  jal    (111)
-| 0      | 1    | 2'b10  | 0        |        | 2'b11  | 1        |       | 2'b01 |  csr    (115)
+| 0      | 1    | 2'b10  | 0        | x      | 2'b11  | 1        | 2'bxx | 2'b00 |  jal    (111)
+| 0      | 1    | 2'b10  | 0        | x      | 2'b11  | 1        | 2'bxx | 2'b01 |  csr    (115)
 
 
 - a la tabla de la guia a resSrc se le agrego un bit estra
@@ -120,19 +120,18 @@ module mainDeco(
                 s_aluOp = 2'bx;
                 s_mocsr = 2'b00;
             end
-            end
             // -- CSR ------------------------------------------------------------------------------     
-            111:
+            7'b1110011:
             begin
                 s_branch = 0;
-                s_jump = 2'b10;
+                s_jump = 2'b01;
                 s_resSrc = 2'b01;
                 s_memWrite = 0;
                 s_aluSrc = 1'bx;
-                s_inmSrc = 2'b11;
+                s_inmSrc = 2'bxx;
                 s_regWrite = 1;
                 s_aluOp = 2'bx;
-                s_mocsr = 2'b00; // por ahora, la salida sera csr_rd, despues vere lo de 2'b10->pc
+                s_mocsr = 2'b01; // por ahora, la salida sera csr_rd, despues vere lo de 2'b10->pc
             end
             default:
             begin

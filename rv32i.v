@@ -12,7 +12,8 @@ module rv32i (
 );
 
     wire f7, zero, branch, regWrite, aluSrc, memWrite;
-    wire [1:0] resSrc, jump, inmSrc;
+    wire csr_w, csr_inm;
+    wire [1:0] resSrc, jump, inmSrc, mocsr;
     wire [2:0] aluControl, f3;
     wire [6:0] op;
     wire [15:0] pc;
@@ -34,7 +35,10 @@ module rv32i (
         .branch(branch),
         .memWrite(memWrite),
         .aluSrc(aluSrc),
-        .regWrite(regWrite)
+        .regWrite(regWrite),
+        .mocsr(mocsr),
+        .csr_w(csr_w),
+        .csr_inm(csr_inm)
     );
 
     DataPath data_path (
@@ -48,6 +52,9 @@ module rv32i (
         .regWrite(regWrite),
         .aluSrc(aluSrc),
         .aluControl(aluControl),
+        .csr_w(csr_w),
+        .csr_inm(csr_inm),
+        .mocsr(mocsr),
 
         .aluRes(aluRes),
         .zero(zero),

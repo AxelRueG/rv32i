@@ -34,15 +34,15 @@ module IM(
         // ROM[8] = 32'hff5ff06f; // jal beq   | (32)
 
         // TEST: save and load value
-        ROM[0] = 32'h00300413; // x8  = 3   | (0)
-        ROM[1] = 32'h00100493; // x9  = 1   | (4)
-        ROM[2] = 32'h01000913; // x18 = 16  | (8)
-        ROM[3] = 32'h00802023; // sw 0      | (12)
-        ROM[4] = 32'h00902223; // sw 4      | (16)
-        ROM[5] = 32'h01202423; // sw 8      | (20)
-        ROM[6] = 32'h00002283; // lw 0      | (24)
-        ROM[7] = 32'h00402303; // lw 4      | (28)
-        ROM[8] = 32'h00802383; // lw 8      | (32)
+        // ROM[0] = 32'h00300413; // x8  = 3   | (0)
+        // ROM[1] = 32'h00100493; // x9  = 1   | (4)
+        // ROM[2] = 32'h01000913; // x18 = 16  | (8)
+        // ROM[3] = 32'h00802023; // sw 0      | (12)
+        // ROM[4] = 32'h00902223; // sw 4      | (16)
+        // ROM[5] = 32'h01202423; // sw 8      | (20)
+        // ROM[6] = 32'h00002283; // lw 0      | (24)
+        // ROM[7] = 32'h00402303; // lw 4      | (28)
+        // ROM[8] = 32'h00802383; // lw 8      | (32)
 
 
         // ~~ EJEMPLO DE INSTUCCION NO CONODICA (05-09 11:17) ~~
@@ -60,7 +60,13 @@ module IM(
         // ROM[7] = 32'hff5ff06f; // endWhile       | (28)
         // ROM[8] = 32'h00a00893; // x17 = 10 (end) | (32) 
 
-        ROM[63] = 32'hfff00893;
+        ROM[0] = 32'h05600513;
+        ROM[1] = 32'h005512f3;
+        ROM[2] = 32'h005022f3;
+        ROM[3] = 32'h005b5573;
+        
+
+        ROM[63] = 32'hfff00893; // aca esta lo que deberia pasar para gestar la cosa de las cosas
     end
 
     // divido por cuato debido a que pc va aumentando de a 4 jeje

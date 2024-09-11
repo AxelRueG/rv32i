@@ -80,8 +80,8 @@ module ControlUnit (
     assign memWrite = s_memWrite | s_csr_rd;
     assign aluSrc = s_aluSrc;
     assign regWrite = s_regWrite;
-    assign mocsr = s_mocsr
-    assign csr_w = s_csr_w
-    assign csr_inm = s_csr_inm
+    assign mocsr = s_mocsr;
+    assign csr_w = s_csr_w;
+    assign csr_inm = s_csr_inm;
     
 endmodule

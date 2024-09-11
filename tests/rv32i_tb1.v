@@ -34,8 +34,9 @@ module rv32i_tb1;
         $dumpvars(0, rv32i_tb1);
         
         for (iter = 0; iter<64; iter=iter+1) begin
+            #2
             $display("[addr_%d: %h]-> %h", iter, instrAddr, instruction);
-            #10
+            #8
             // si no hay mas intrucciones corta la ejecucion
             if (instruction === 32'bx) begin
                 $finish;
