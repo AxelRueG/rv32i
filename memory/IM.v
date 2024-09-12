@@ -66,11 +66,11 @@ module IM(
         ROM[3] = 32'hfff02003; // lw x0,0,1
         ROM[4] = 32'h00a00893; // addi x17,xx0,10
 
-        ROM[64] = 32'h00000013; // nop 
-        ROM[65] = 32'h041012f3; // csrrw x5,65,x0 
-        ROM[66] = 32'h00428293; // addi x5,x5,4
-        ROM[67] = 32'h04129073; // csrrw x0,65,x5
-        ROM[68] = 32'h00200073; // uret
+        // ROM[64] = 32'h00000013; // nop 
+        ROM[64] = 32'h041012f3; // csrrw x5,65,x0 
+        ROM[65] = 32'h00428293; // addi x5,x5,4
+        ROM[66] = 32'h04129073; // csrrw x0,65,x5
+        ROM[67] = 32'h00200073; // uret
 
         
     end

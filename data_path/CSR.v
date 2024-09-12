@@ -41,9 +41,12 @@ module CSR (
 
     // auxiliares
     reg [6:0] ope_code;
+    reg en_mepc_excep;
 
 
     always @(*) begin
+
+        en_mepc_excep = 0;
 
         // --- HANDLE ERROR ------------------------------------------------------------------------
         op_m = 2'b00;
@@ -62,8 +65,8 @@ module CSR (
             ) begin // si opcode no esta entre los valores validos
                 op_m = 2'b11;
                 addr_o = mtvec;
-                mepc = rom_addr;
                 mcause = 2; // intruccion ilegal
+                en_mepc_excep = 1;
             end 
             
             if ((ope_code == 3 || ope_code == 35) && 
@@ -71,29 +74,30 @@ module CSR (
             begin
                 op_m = 2'b11;
                 addr_o = mtvec;
-                mepc = rom_addr;
                 mcause = 4; // Load address misaligned
+                en_mepc_excep = 1;
             end 
             
             if (rom_addr > ROM_MAX_ADDR) begin
                 op_m = 2'b11;
                 addr_o = mtvec;
-                mepc = rom_addr;
                 mcause = 0; // instruction address misaligned
+                en_mepc_excep = 1;
             end 
             
             // Instruction EBREAK
             if (instr[14:12] == 3'b000 && csr == ADDR_fflags && ope_code == 115) begin
                 op_m = 2'b11;
                 addr_o = mtvec;
-                mepc = rom_addr;
                 mcause = 0;
+                en_mepc_excep = 1;
             end 
             // Instruction MRET
             if (instr[14:12] == 3'b000 && csr == ADDR_frm && ope_code == 115) begin
                 op_m = 2'b11;
                 addr_o = mepc;
                 mcause = 0;
+                // en_mepc_excep = 0;
             end
         end
 
@@ -113,6 +117,15 @@ module CSR (
         endcase
     end
 
+    // guardamos el pc la la instruccion que genero la excepcion
+    always @(negedge(clk))
+    begin
+        if (en_mepc_excep) begin
+            mepc = rom_addr;
+        end
+    end
+
+    // en caso de flanco de subida actualizamos los registros con write_data
     always @(posedge clk)
     begin
         if (csr_w) begin
