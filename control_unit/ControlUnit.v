@@ -34,7 +34,7 @@ module ControlUnit (
     wire [1:0] s_mocsr;
     wire s_csr_w;
     wire s_csr_imn;
-    wire s_csr_rd;
+    // wire s_csr_rd;
 
     reg r_branch; // salida, incluye la comparacion con el resultado de la ALU
 
@@ -62,8 +62,7 @@ module ControlUnit (
         .op(op),
         .f3(f3),
         .csr_w(s_csr_w),
-        .csr_inm(s_csr_inm),
-        .reg_write(s_csr_rd)
+        .csr_inm(s_csr_inm)
     );
 
     always @(*) begin
@@ -74,7 +73,7 @@ module ControlUnit (
     assign resSrc = s_resSrc;
     assign jump = s_jump;
     assign branch = r_branch;
-    assign memWrite = s_memWrite | s_csr_rd;
+    assign memWrite = s_memWrite;
     assign aluSrc = s_aluSrc;
     assign regWrite = s_regWrite;
     assign mocsr = s_mocsr;

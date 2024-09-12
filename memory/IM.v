@@ -4,7 +4,7 @@ module IM(
 );
 
     parameter ROM_WIDTH = 32;
-    parameter ROM_ADDR_BITS = 64;
+    parameter ROM_ADDR_BITS = 128;
     reg [ROM_WIDTH-1:0] ROM [ROM_ADDR_BITS-1:0];
 
     initial begin
@@ -23,15 +23,15 @@ module IM(
         // ROM[10] = 32'h01d4afb3; // x31 = x8 < x29 = 0 | (40)
 
         // TEST: instruction BEQ and J
-        ROM[0] = 32'h00300413; // x8  = 3   | (0)
-        ROM[1] = 32'h00100493; // x9  = 1   | (4)
-        ROM[2] = 32'h01000913; // x18 = 16  | (8)
-        ROM[3] = 32'h00100293; // x5  = 1   | (12)
-        ROM[4] = 32'h00000313; // x6  = 0   | (16)
-        ROM[5] = 32'h01228863; // beq       | (20)
-        ROM[6] = 32'h005282b3; // x5 += x5  | (24)
-        ROM[7] = 32'h00130313; // x6 += 1   | (28)
-        ROM[8] = 32'hff5ff06f; // jal beq   | (32)
+        // ROM[0] = 32'h00300413; // x8  = 3   | (0)
+        // ROM[1] = 32'h00100493; // x9  = 1   | (4)
+        // ROM[2] = 32'h01000913; // x18 = 16  | (8)
+        // ROM[3] = 32'h00100293; // x5  = 1   | (12)
+        // ROM[4] = 32'h00000313; // x6  = 0   | (16)
+        // ROM[5] = 32'h01228863; // beq       | (20)
+        // ROM[6] = 32'h005282b3; // x5 += x5  | (24)
+        // ROM[7] = 32'h00130313; // x6 += 1   | (28)
+        // ROM[8] = 32'hff5ff06f; // jal beq   | (32)
 
         // TEST: save and load value
         // ROM[0] = 32'h00300413; // x8  = 3   | (0)
@@ -60,16 +60,31 @@ module IM(
         // ROM[7] = 32'hff5ff06f; // endWhile       | (28)
         // ROM[8] = 32'h00a00893; // x17 = 10 (end) | (32) 
 
-        // ROM[0] = 32'h05600513;
-        // ROM[1] = 32'h005512f3;
-        // ROM[2] = 32'h005022f3;
-        // ROM[3] = 32'h005b5573;
-        
+        ROM[0] = 32'h10000293; // addi x5,x0,100
+        ROM[1] = 32'h00529073; // csrrw x0,5,x5
+        ROM[2] = 32'h0000e073; // csrrsi x0,0,1
+        ROM[3] = 32'hfff02003; // lw x0,0,1
+        ROM[4] = 32'h00a00893; // addi x17,xx0,10
 
-        ROM[63] = 32'hfff00893; // aca esta lo que deberia pasar para gestar la cosa de las cosas
+        ROM[64] = 32'h00000013; // nop 
+        ROM[65] = 32'h041012f3; // csrrw x5,65,x0 
+        ROM[66] = 32'h00428293; // addi x5,x5,4
+        ROM[67] = 32'h04129073; // csrrw x0,65,x5
+        ROM[68] = 32'h00200073; // uret
+
+        
     end
 
     // divido por cuato debido a que pc va aumentando de a 4 jeje
     assign instr = ROM[pc >> 2];
 
 endmodule
+
+/*
+041012f3 -> 000001000001 00000 001 00101 1110011
+00428293 -> 000000000100 00101 000 00101 0010011
+04129073 -> 000001000001 00101 001 00000 1110011
+00200073 -> 000000000010 00000 000 00000 1110011
+
+
+*/

@@ -40,8 +40,8 @@ begin
             end
         3'b101: // SLT
             begin
-                aux = srcB > srcA;
-                aux_zero <=  srcB > srcA;
+                aux = $signed(srcB) > $signed(srcA);
+                aux_zero <=  $signed(srcB) > $signed(srcA);
             end
         default:
             begin

@@ -7,7 +7,7 @@ module csr_exception_tb;
     reg [31:0] instr;
     reg [15:0] ram_addr;
     reg [15:0] rom_addr;
-    wire op_m;
+    wire [1:0] op_m;
     wire [31:0] addr_o;
 
     reg clk;
@@ -40,49 +40,50 @@ module csr_exception_tb;
         $dumpfile("./waves/csr_exception_tb.vcd");
         $dumpvars(0, csr_exception_tb);
 
-        // Excepcion de invalid op
-        // instr CSR
-        // op  = 7'b1111111
-        // csr = 12'h005
-        // rd = 00000
-        // f3 = 010
-        // ra = 00000
-        instr = 32'b00000000010100000010000001111111;
-        ram_addr = 12;
-        rom_addr = 24;
+
+        // 32'h10000293;
+        // 32'h00529073;
+        // 32'h0000e073;
+        // 32'hfff02003;
+        // 32'h00a00893;
+        instr = 32'h10000293;
+        ram_addr = 32;
+        rom_addr = 0;
+        csr_w = 0;
+        wd = 0;
+        csr = 12'h100;
+        #10
+
+        instr = 32'h00529073;
+        ram_addr = 32;
+        rom_addr = 4;
         csr_w = 1;
-        wd = 100;
+        wd = 32'h00000100;
         csr = 12'h005;
         #10
 
-        // Instruccion CSR normal 
-        // op = 7'b1110011
-        instr = 32'b00000000010100000010000001110011;
-        ram_addr = 12;
-        rom_addr = 28;
+        instr = 32'h0000e073;
+        ram_addr = 32;
+        rom_addr = 8;
         csr_w = 1;
-        wd = 100;
-        csr = 12'h005;
+        wd = 1;
+        csr = 12'h000;
         #10
 
-        // Instruccion RAM addr invalid 
-        // op = 7'b1110011
-        instr = 32'b00000000010100000010000001110011;
-        ram_addr = 76;
-        rom_addr = 32;
-        csr_w = 1;
-        wd = 100;
-        csr = 12'h005;
+        instr = 32'hfff02003;
+        ram_addr = -1;
+        rom_addr = 12;
+        csr_w = 0;
+        wd = 0;
+        csr = 12'hfff;
         #10
 
-        // Instruccion ROM addr invalid 
-        // op = 7'b1110011
-        instr = 32'b00000000010100000010000001110011;
-        ram_addr = 12;
-        rom_addr = 112;
-        csr_w = 1;
-        wd = 100;
-        csr = 12'h005;
+        instr = 32'h00a00893;
+        ram_addr = 32;
+        rom_addr = 16;
+        csr_w = 0;
+        wd = 0;
+        csr = 12'h00a;
         #10
 
         $finish;

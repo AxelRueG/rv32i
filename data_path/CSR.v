@@ -36,6 +36,8 @@ module CSR (
     parameter ADDR_mscratch = 12'h040;
     parameter ADDR_mepc = 12'h041;
     parameter ADDR_mcause = 12'h042;
+    
+    parameter ROM_MAX_ADDR = 508;
 
     // auxiliares
     reg [6:0] ope_code;
@@ -47,47 +49,52 @@ module CSR (
         op_m = 2'b00;
         addr_o = 32'bx;
         ope_code = instr[6:0];
-        if (
-            ope_code != 3   &&
-            ope_code != 19  &&
-            ope_code != 35  &&
-            ope_code != 51  &&
-            ope_code != 99  &&
-            ope_code != 111 &&
-            ope_code != 115
-        ) begin // si opcode no esta entre los valores validos
-            op_m = 2'b11;
-            addr_o = mtvec;
-            mepc = rom_addr;
-            mcause = 2; // intruccion ilegal
-        end 
-        
-        if (ram_addr > 64) begin
-            op_m = 2'b11;
-            addr_o = mtvec;
-            mepc = rom_addr;
-            mcause = 4; // Load address misaligned
-        end 
-        
-        if (rom_addr > 100) begin
-            op_m = 2'b11;
-            addr_o = mtvec;
-            mepc = rom_addr;
-            mcause = 0; // instruction address misaligned
-        end 
-        
-        // Instruction EBREAK
-        if (instr[14:12] == 3'b000 && csr == ADDR_fflags && ope_code == 115) begin
-            op_m = 2'b11;
-            addr_o = mtvec;
-            mepc = rom_addr;
-            mcause = 0;
-        end 
-        // Instruction MRET
-        if (instr[14:12] == 3'b000 && csr == ADDR_frm && ope_code == 115) begin
-            op_m = 2'b11;
-            addr_o = mepc;
-            mcause = 0;
+        // Si MSTATUS esta enable entonces podemos menjar las excepciones
+        if (mstatus) begin
+            if (
+                ope_code != 3   &&
+                ope_code != 19  &&
+                ope_code != 35  &&
+                ope_code != 51  &&
+                ope_code != 99  &&
+                ope_code != 111 &&
+                ope_code != 115
+            ) begin // si opcode no esta entre los valores validos
+                op_m = 2'b11;
+                addr_o = mtvec;
+                mepc = rom_addr;
+                mcause = 2; // intruccion ilegal
+            end 
+            
+            if ((ope_code == 3 || ope_code == 35) && 
+                ($signed(ram_addr) < 0 || ram_addr > 16'h007c )) 
+            begin
+                op_m = 2'b11;
+                addr_o = mtvec;
+                mepc = rom_addr;
+                mcause = 4; // Load address misaligned
+            end 
+            
+            if (rom_addr > ROM_MAX_ADDR) begin
+                op_m = 2'b11;
+                addr_o = mtvec;
+                mepc = rom_addr;
+                mcause = 0; // instruction address misaligned
+            end 
+            
+            // Instruction EBREAK
+            if (instr[14:12] == 3'b000 && csr == ADDR_fflags && ope_code == 115) begin
+                op_m = 2'b11;
+                addr_o = mtvec;
+                mepc = rom_addr;
+                mcause = 0;
+            end 
+            // Instruction MRET
+            if (instr[14:12] == 3'b000 && csr == ADDR_frm && ope_code == 115) begin
+                op_m = 2'b11;
+                addr_o = mepc;
+                mcause = 0;
+            end
         end
 
 

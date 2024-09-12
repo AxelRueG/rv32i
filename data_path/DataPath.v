@@ -154,7 +154,7 @@ module DataPath (
 
     CSR csr (
         .instr(instr),
-        .ram_addr(s_alu_res),
+        .ram_addr(s_alu_res[15:0]),
         .rom_addr(s_pck),
         .op_m(s_op_m), // basicamente este op_m es una mascara para tomar la direccion de excepcion o retorno
         .addr_o(s_excep_addr),
