@@ -56,10 +56,14 @@ module DataPath (
     wire [31:0] s_csr_rd;
     wire [31:0] s_read_data;
 
+    // csr
+    wire [1:0] s_op_m;
+    wire [31:0] s_excep_addr;
+
     // constantes
     reg [31:0] cuatro = 4;
     reg [31:0] addr_reset = 0;
-    reg [31:0] addr_excep = 100;
+    // reg [31:0] addr_excep = 100;
 
     // --- conections ------------------------------------------------------------------------------
     // FETCH    
@@ -86,8 +90,8 @@ module DataPath (
         .e1(addr_reset),
         .e2(s_pc_next),
         .e3(s_pc_jump),
-        .e4(addr_excep),
-        .sel(jump),
+        .e4(s_excep_addr),
+        .sel(jump | s_op_m),
         .sal(s_pck1)
     );
 
@@ -149,6 +153,12 @@ module DataPath (
     );
 
     CSR csr (
+        .instr(instr),
+        .ram_addr(s_alu_res),
+        .rom_addr(s_pck),
+        .op_m(s_op_m), // basicamente este op_m es una mascara para tomar la direccion de excepcion o retorno
+        .addr_o(s_excep_addr),
+
         .clk(clk),
         .csr_w(csr_w),
         .csr(instr[31:20]),

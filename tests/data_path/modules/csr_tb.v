@@ -3,6 +3,13 @@
 
 module csr_tb;
     
+    
+    reg [31:0] instr;
+    reg [15:0] ram_addr;
+    reg [15:0] rom_addr;
+    wire op_m;
+    wire [31:0] addr_o;
+
     reg clk;
     reg csr_w;
     reg [11:0] csr;
@@ -10,6 +17,13 @@ module csr_tb;
     wire [31:0] rd;
 
     CSR uut (
+        .instr(instr),
+        .ram_addr(ram_addr),
+        .rom_addr(rom_addr), // es lo mismo que pc
+        .op_m(op_m), // por ahora esto getionara como si fuera la atencion a excepciones original
+        .addr_o(addr_o),
+
+
         .clk(clk),
         .csr_w(csr_w),
         .csr(csr),
@@ -25,6 +39,12 @@ module csr_tb;
     initial begin
         $dumpfile("./waves/csr_tb.vcd");
         $dumpvars(0, csr_tb);
+
+
+
+        instr = 32'h00502073;
+        ram_addr = 12;
+        rom_addr = 24;
 
         wd = 100;
 
