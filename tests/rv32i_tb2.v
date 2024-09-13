@@ -1,7 +1,7 @@
 `include "./rv32i.v"
 `timescale 1ps/1ps
 
-module rv32i_tb1;
+module rv32i_tb2;
     
 
     reg clk;
@@ -30,12 +30,19 @@ module rv32i_tb1;
         forever #5 clk = ~clk;
     end
 
+    initial begin
+        key = 0;
+        #122
+        $display("the key was pressed");
+        key = 1;
+        #1
+        key = 0;
+    end
+
     // procesamos las intrucciones
     initial begin
-        $dumpfile("./waves/rv32i_tb1.vcd");
-        $dumpvars(0, rv32i_tb1);
-        
-        key = 0;
+        $dumpfile("./waves/rv32i_tb2.vcd");
+        $dumpvars(0, rv32i_tb2);
 
         for (iter = 0; iter<64; iter=iter+1) begin
             #2

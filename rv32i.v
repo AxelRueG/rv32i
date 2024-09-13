@@ -4,6 +4,7 @@
 
 module rv32i (
     input wire clk,
+    input wire key,
     output wire [15:0] instrAddr,
     output wire [31:0] aluResult,
     output wire [31:0] memoryOut,
@@ -53,6 +54,8 @@ module rv32i (
         .csr_w(csr_w),
         .csr_inm(csr_inm),
         .mocsr(mocsr),
+
+        .key(key),
 
         .aluRes(aluRes),
         .zero(zero),

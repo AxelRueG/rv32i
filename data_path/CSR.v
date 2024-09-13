@@ -1,3 +1,5 @@
+`timescale 1ps/1ps
+
 module CSR (
     // para mantener actualizado y controlado los registros
     input [31:0] instr,
@@ -5,6 +7,9 @@ module CSR (
     input [15:0] rom_addr, // es lo mismo que pc
     output reg [1:0] op_m, // por ahora esto getionara como si fuera la atencion a excepciones original
     output reg [31:0] addr_o,
+
+    // key for handle external interrup
+    input wire key,
 
     // para las intrucciones CSR
     input wire clk,
@@ -99,6 +104,15 @@ module CSR (
                 mcause = 0;
                 // en_mepc_excep = 0;
             end
+
+            if (mie != 32'b0 && key == 1) begin
+                op_m = 2'b11;
+                addr_o = mtvec;
+                mcause = 32'h0000000b; // should be 32'h8000000b
+                en_mepc_excep = 1;
+                #10
+                op_m = 2'b00;
+            end
         end
 
 
@@ -124,6 +138,19 @@ module CSR (
             mepc = rom_addr;
         end
     end
+
+    // always @(posedge(key)) begin
+    //     if (mie != 32'b0) begin
+    //         op_m = 2'b11;
+    //         addr_o = mtvec;
+    //         // the most significative bit is 1 because is an interrupt, but for this implementation reduced is only 11
+    //         mcause = 32'h0000000b; 
+    //         mepc = rom_addr;
+    //         // en_mepc_excep = 1;
+    //         // #10;`
+    //     end
+    // end
+
 
     // en caso de flanco de subida actualizamos los registros con write_data
     always @(posedge clk)

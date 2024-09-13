@@ -25,6 +25,8 @@ module DataPath (
     input wire csr_inm,
     input wire [1:0] mocsr,
 
+    input wire key,
+
     // ---------------------------------------------------------------------------------------------
     // OUTPUTS
     // ---------------------------------------------------------------------------------------------
@@ -158,6 +160,8 @@ module DataPath (
         .rom_addr(s_pck),
         .op_m(s_op_m), // basicamente este op_m es una mascara para tomar la direccion de excepcion o retorno
         .addr_o(s_excep_addr),
+
+        .key(key),
 
         .clk(clk),
         .csr_w(csr_w),

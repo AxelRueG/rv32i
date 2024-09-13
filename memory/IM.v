@@ -60,31 +60,43 @@ module IM(
         // ROM[7] = 32'hff5ff06f; // endWhile       | (28)
         // ROM[8] = 32'h00a00893; // x17 = 10 (end) | (32) 
 
-        ROM[0] = 32'h10000293; // addi x5,x0,100
+        // ROM[0] = 32'h10000293; // addi x5,x0,100
+        // ROM[1] = 32'h00529073; // csrrw x0,5,x5
+        // ROM[2] = 32'h0000e073; // csrrsi x0,0,1
+        // ROM[3] = 32'hfff02003; // lw x0,0,1
+        // ROM[4] = 32'h00a00893; // addi x17,xx0,10
+
+        // // ROM[64] = 32'h00000013; // nop 
+        // ROM[64] = 32'h041012f3; // csrrw x5,65,x0 
+        // ROM[65] = 32'h00428293; // addi x5,x5,4
+        // ROM[66] = 32'h04129073; // csrrw x0,65,x5
+        // ROM[67] = 32'h00200073; // uret
+
+        ROM[0] = 32'h10000293; // addi x5,x0,256
         ROM[1] = 32'h00529073; // csrrw x0,5,x5
         ROM[2] = 32'h0000e073; // csrrsi x0,0,1
-        ROM[3] = 32'hfff02003; // lw x0,0,1
-        ROM[4] = 32'h00a00893; // addi x17,xx0,10
-
-        // ROM[64] = 32'h00000013; // nop 
-        ROM[64] = 32'h041012f3; // csrrw x5,65,x0 
-        ROM[65] = 32'h00428293; // addi x5,x5,4
-        ROM[66] = 32'h04129073; // csrrw x0,65,x5
+        ROM[3] = 32'h0040e073; // csrrsi x0,4,1
+        ROM[4] = 32'h00000333; // add x6,x0,x0
+        ROM[5] = 32'h00a00393; // addi x7,x0,10
+        ROM[6] = 32'h00730663; // beq x7,x0,12
+        ROM[7] = 32'h00130313; // addi x6,x6,1
+        ROM[8] = 32'hff9ff0ef; // jal x1,-8
+        ROM[9] = 32'h00a00893; // addi x17,x0,10
+ 
+        ROM[64] = 32'h04202573; // csrrs x10,66,x0
+        ROM[65] = 32'h00b00593; // addi x11,x0,11
+        ROM[66] = 32'h00b50463; // beq x10,x11,8
         ROM[67] = 32'h00200073; // uret
+        ROM[68] = 32'h00000e33; // add x28,x0,x0 
+        ROM[69] = 32'h00500e93; // addi x29,x0,5
+        ROM[70] = 32'h01de0663; // beq x28,x29,12
+        ROM[71] = 32'h001e0e13; // addi x28,x28,1
+        ROM[72] = 32'hff9ff06f; // jal x0,-8
+        ROM[73] = 32'h00200073; // uret
 
-        
     end
 
     // divido por cuato debido a que pc va aumentando de a 4 jeje
     assign instr = ROM[pc >> 2];
 
 endmodule
-
-/*
-041012f3 -> 000001000001 00000 001 00101 1110011
-00428293 -> 000000000100 00101 000 00101 0010011
-04129073 -> 000001000001 00101 001 00000 1110011
-00200073 -> 000000000010 00000 000 00000 1110011
-
-
-*/
