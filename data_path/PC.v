@@ -1,3 +1,7 @@
+/**
+PROGRAM COUNTER
+16-bit register with the address of the next instruction
+*/
 module PC (
     input wire clk,
     input wire [15:0] pcNext,

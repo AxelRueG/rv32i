@@ -1,3 +1,6 @@
+/**
+Data Memory (RAN)
+*/
 module DM(
     input clk, we,
     input [15:0] addres,

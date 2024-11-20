@@ -1,9 +1,12 @@
+/**
+ADDER (32 bits)
+*/
 module Adder (
     input [31:0] op1,
     input [31:0] op2,
-    output [31:0] sal
+    output [31:0] res
 );
 
-    assign sal = op1 + op2;
+    assign res = op1 + op2;
     
 endmodule

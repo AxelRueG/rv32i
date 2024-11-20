@@ -1,6 +1,9 @@
+/**
+Instruction Memory (ROM)
+*/
 module IM(
-    input [15:0] pc,
-    output [31:0] instr
+    input [15:0] addr,
+    output [31:0] rd
 );
 
     parameter ROM_WIDTH = 32;
@@ -45,7 +48,7 @@ module IM(
         // ROM[8] = 32'h00802383; // lw 8      | (32)
 
 
-        // ~~ EJEMPLO DE INSTUCCION NO CONODICA (05-09 11:17) ~~
+        // ~~ EXAMPLE OF A INSTRUCTION UNKNOWN (05-09 11:17) ~~
         // ROM[0] = 32'h00300413; // x8 - 3         | (0)
         // ROM[1] = 32'h00b00493; // x9 - 11        | (4)
         // ROM[2] = 32'h000002b3; // x5 = 0         | (8)
@@ -96,7 +99,7 @@ module IM(
 
     end
 
-    // divido por cuato debido a que pc va aumentando de a 4 jeje
-    assign instr = ROM[pc >> 2];
+    // The program counter is updated with a step of four
+    assign rd = ROM[addr >> 2];
 
 endmodule
