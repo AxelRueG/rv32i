@@ -14,13 +14,12 @@ module DataPath (
     input wire branch,
     input wire [1:0] jump,
     input wire clk,
-    input wire [31:0] readData,
-    input wire [1:0] resultSrc,
-    // input wire [1:0] inmSrc,
+    input wire [31:0] read_data,
+    input wire [1:0] dato_s,
     input wire [31:0] instr,
-    input wire regWrite,
-    input wire aluSrc,
-    input wire [2:0] aluControl,
+    input wire reg_w,
+    input wire alu_s,
+    input wire [2:0] alu_op,
     input wire csr_w,
     input wire csr_inm,
     input wire [1:0] mocsr,
@@ -30,12 +29,12 @@ module DataPath (
     // ---------------------------------------------------------------------------------------------
     // OUTPUTS
     // ---------------------------------------------------------------------------------------------
-    output wire [31:0] aluRes, // esto deberia ir a la memoria
-    output wire zero, // por lo pronto no se como funcionara esto
-    output wire [6:0] op,
+    output wire [31:0] alu_r, // esto deberia ir a la memoria
+    output wire flag, // por lo pronto no se como funcionara esto
+    output wire [6:0] op_code,
     output wire [2:0] f3,
     output wire f7,
-    output wire [31:0] writeData,
+    output wire [31:0] write_data,
     output wire [15:0] pc
 );
 
@@ -50,7 +49,7 @@ module DataPath (
     wire [31:0] s_srcA;
     wire [31:0] s_srcB;
 
-    wire [31:0] s_inmExt;
+    wire [31:0] s_inm;
     wire [31:0] s_src2;
     wire [31:0] s_wd3;
 
@@ -71,7 +70,7 @@ module DataPath (
     // FETCH    
     Mux2x1 m4 (
         .e1(cuatro),
-        .e2(s_inmExt),
+        .e2(s_inm),
         .sel(branch),
         .sal(s_pc_offset)
     );
@@ -79,13 +78,13 @@ module DataPath (
     Adder add1 (
         .op1(s_pc_offset),
         .op2({16'b0, s_pck}),
-        .sal(s_pc_next)
+        .res(s_pc_next)
     );
 
     Adder add2 (
-        .op1(s_inmExt),
+        .op1(s_inm),
         .op2({16'b0, s_pck}),
-        .sal(s_pc_jump)
+        .res(s_pc_jump)
     );
 
     Mux4x1 m1 (
@@ -106,11 +105,11 @@ module DataPath (
     // TYPE-R
     BR register_bank (
         .clk(clk),
+        .we(reg_w),
         .a1(instr[19:15]),
         .a2(instr[24:20]),
         .a3(instr[11:7]),
         .wd3(s_wd3),
-        .we(regWrite),
         .rd1(s_srcA),
         .rd2(s_srcB)
     );
@@ -118,31 +117,30 @@ module DataPath (
     ALU alu (
         .srcA(s_srcA),
         .srcB(s_src2),
-        .ALUControl(aluControl),
+        .operation(alu_op),
         .res(s_alu_res),
-        .zero(zero)
+        .flag(flag)
     );
 
     // TYPE-I
     SE sign_extension (
         .instr(instr),
-        // .src(inmSrc),
-        .inmExt(s_inmExt)
+        .inm(s_inm)
     );
 
     Mux2x1 m2 (
         .e1(s_srcB),
-        .e2(s_inmExt),
-        .sel(aluSrc),
+        .e2(s_inm),
+        .sel(alu_s),
         .sal(s_src2)
     );
 
     Mux4x1 m3 (
         .e1(s_alu_res),
         .e2(s_read_data),
-        .e3(s_inmExt),
+        .e3(s_inm),
         .e4(s_pc_next),
-        .sel(resultSrc),
+        .sel(dato_s),
         .sal(s_wd3)
     );
 
@@ -173,7 +171,7 @@ module DataPath (
     // necesitamos un mux para seleccionar la data de csr o la data leida de memoria
 
     Mux4x1 m6 (
-        .e1(readData),
+        .e1(read_data),
         .e2(s_csr_rd),
         .e3({16'b0, s_pck}),
         .e4(32'bx),
@@ -183,11 +181,11 @@ module DataPath (
 
     // --- outputs ---------------------------------------------------------------------------------
     assign pc = s_pck;
-    assign aluRes = s_alu_res;
+    assign alu_r = s_alu_res;
     assign f3 = instr[14:12];
     assign f7 = instr[30];
-    assign op = instr[6:0];
-    assign writeData = s_srcB;
+    assign op_code = instr[6:0];
+    assign write_data = s_srcB;
 
 
 endmodule

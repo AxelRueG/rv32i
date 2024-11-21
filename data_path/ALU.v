@@ -1,7 +1,7 @@
 module ALU(
     input [31:0] srcA,
     input [31:0] srcB,
-    input [2:0] ALUControl,
+    input [2:0] operation,
     output [31:0] res,
     output wire flag
 );
@@ -11,7 +11,7 @@ reg aux_flag = 0;
 
 always @(*)
 begin
-    case (ALUControl)
+    case (operation)
         3'b000:
             begin
                 aux = srcA+srcB;
