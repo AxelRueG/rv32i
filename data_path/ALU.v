@@ -51,7 +51,7 @@ begin
     endcase
 end
 
-assign flag = aux_zero;
+assign flag = aux_flag;
 assign res = aux;
 
 endmodule

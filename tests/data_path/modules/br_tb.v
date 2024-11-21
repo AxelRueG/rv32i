@@ -4,11 +4,11 @@
 module br_tb;
     
     reg clk;
+    reg we;
     reg [4:0] a1;
     reg [4:0] a2;
     reg [4:0] a3;
     reg [31:0] wd3;
-    reg we;
     wire [31:0] rd1;
     wire [31:0] rd2;
 
@@ -16,11 +16,11 @@ module br_tb;
 
     BR uut (
         .clk(clk),
+        .we(we),
         .a1(a1),
         .a2(a2),
         .a3(a3),
         .wd3(wd3),
-        .we(we),
         .rd1(rd1),
         .rd2(rd2)
     );

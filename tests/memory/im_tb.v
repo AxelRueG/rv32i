@@ -2,14 +2,15 @@
 `timescale 1 ns / 1 ps
 
 module im_tb;
+
+    integer iterator;
     
     reg [15:0] instr_addr;
-    integer iterator;
     wire [31:0] instr;
 
     IM uut(
-        .pc(instr_addr),
-        .instr(instr)
+        .addr(instr_addr),
+        .rd(instr)
     );
 
 
@@ -18,7 +19,7 @@ module im_tb;
         for (iterator = 0; iterator < 256; iterator = iterator + 4) begin
             instr_addr = iterator;
             #10;
-            $display("inst [%d] %h", iterator, instr);
+            $display("inst [%d | %d] %h", iterator, iterator >> 2, instr);
         end
 
         #10

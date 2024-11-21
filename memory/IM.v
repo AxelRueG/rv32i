@@ -86,16 +86,16 @@ module IM(
         ROM[8] = 32'hff9ff0ef; // jal x1,-8
         ROM[9] = 32'h00a00893; // addi x17,x0,10
  
-        ROM[64] = 32'h04202573; // csrrs x10,66,x0
-        ROM[65] = 32'h00b00593; // addi x11,x0,11
-        ROM[66] = 32'h00b50463; // beq x10,x11,8
-        ROM[67] = 32'h00200073; // uret
-        ROM[68] = 32'h00000e33; // add x28,x0,x0 
-        ROM[69] = 32'h00500e93; // addi x29,x0,5
-        ROM[70] = 32'h01de0663; // beq x28,x29,12
-        ROM[71] = 32'h001e0e13; // addi x28,x28,1
-        ROM[72] = 32'hff9ff06f; // jal x0,-8
-        ROM[73] = 32'h00200073; // uret
+        ROM[50] = 32'h04202573; // csrrs x10,66,x0
+        ROM[51] = 32'h00b00593; // addi x11,x0,11
+        ROM[52] = 32'h00b50463; // beq x10,x11,8
+        ROM[53] = 32'h00200073; // uret
+        ROM[54] = 32'h00000e33; // add x28,x0,x0 
+        ROM[55] = 32'h00500e93; // addi x29,x0,5
+        ROM[56] = 32'h01de0663; // beq x28,x29,12
+        ROM[57] = 32'h001e0e13; // addi x28,x28,1
+        ROM[58] = 32'hff9ff06f; // jal x0,-8
+        ROM[59] = 32'h00200073; // uret
 
     end
 
