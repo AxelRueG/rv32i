@@ -1,4 +1,4 @@
-`include "./memory/DM.v"
+`include "./memories/DM.v"
 `timescale 1ps/1ps
 
 module dm_tb;

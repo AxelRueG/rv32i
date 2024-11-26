@@ -1,4 +1,4 @@
-`include "./memory/IM.v"
+`include "./memories/IM.v"
 `timescale 1 ns / 1 ps
 
 module im_tb;

@@ -1,5 +1,5 @@
-`include "./memory/DM.v"
-`include "./memory/IM.v"
+`include "./memories/DM.v"
+`include "./memories/IM.v"
 
 module Memory (
     input wire clk,
