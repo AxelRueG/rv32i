@@ -3,57 +3,61 @@
 
 module main_deco_tb;
     
-reg [6:0] op;
+reg [6:0] op_code;
 wire branch;
-wire jump;
-wire [1:0] resSrc;
-wire memWrite;
-wire aluSrc;
-wire [1:0] inmSrc;
-wire regWrite;
-wire [1:0] aluOp;
+wire [1:0] jump;
+wire [1:0] dato_s;
+wire mem_w;
+wire alu_s;
+wire reg_w;
+wire [1:0] sel;
+wire [1:0] mocsr;
 
 mainDeco uut (
-    .op(op),
+    .op_code(op_code),
     .branch(branch),
     .jump(jump),
-    .resSrc(resSrc),
-    .memWrite(memWrite),
-    .aluSrc(aluSrc),
-    .inmSrc(inmSrc),
-    .regWrite(regWrite),
-    .aluOp(aluOp)
+    .dato_s(dato_s),
+    .mem_w(mem_w),
+    .alu_s(alu_s),
+    .reg_w(reg_w),
+    .sel(sel),
+    .mocsr(mocsr)
 );
 
 initial begin
     
-    $display("| branch | jump | resSrc | memWrite | aluSrc | inmSrc | regWrite | aluOp |");
-    op = 3;
+    $display("   | branch | jump | dato_s | mem_w | alu_s | reg_w | sel | mocsr |");
+    $display("   |--------|------|--------|-------|-------|-------|-----|-------|");
+    op_code = 3;
     #10 
-    $display("lw | %b | %b | %b | %b | %b | %b | %b | %b |", branch, jump, resSrc, memWrite, aluSrc, inmSrc, regWrite, aluOp);
+    $display("lw | %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
     
-    op = 35;
+    op_code = 35;
     #10 
-    $display("sw | %b | %b | %b | %b | %b | %b | %b | %b |", branch, jump, resSrc, memWrite, aluSrc, inmSrc, regWrite, aluOp);
+    $display("sw | %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
     
-    op = 51;
+    op_code = 51;
     #10 
-    $display("R  | %b | %b | %b | %b | %b | %b | %b | %b |", branch, jump, resSrc, memWrite, aluSrc, inmSrc, regWrite, aluOp);
+    $display("R  | %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
     
-    op = 99;
+    op_code = 99;
     #10 
-    $display("B  | %b | %b | %b | %b | %b | %b | %b | %b |", branch, jump, resSrc, memWrite, aluSrc, inmSrc, regWrite, aluOp);
+    $display("B  | %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
     
-    op = 19;
+    op_code = 19;
     #10 
-    $display("I  | %b | %b | %b | %b | %b | %b | %b | %b |", branch, jump, resSrc, memWrite, aluSrc, inmSrc, regWrite, aluOp);
+    $display("I  | %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
     
-    op = 111;
+    op_code = 111;
     #10 
-    $display("J  | %b | %b | %b | %b | %b | %b | %b | %b |", branch, jump, resSrc, memWrite, aluSrc, inmSrc, regWrite, aluOp);
-    op = 103;
+    $display("J  | %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
+    op_code = 7'b1110011;
     #10 
-    $display("Ex | %b | %b | %b | %b | %b | %b | %b | %b |", branch, jump, resSrc, memWrite, aluSrc, inmSrc, regWrite, aluOp);
+    $display("csr| %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
+    op_code = 103;
+    #10 
+    $display("Ex | %b      | %b   | %b     | %b     | %b     | %b     | %b  | %b    |", branch, jump, dato_s, mem_w, alu_s, reg_w, sel, mocsr);
 
 
 end

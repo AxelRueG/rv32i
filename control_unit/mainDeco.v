@@ -1,7 +1,7 @@
 /**
 ## RESUME
 
-| branch | jump | resSrc | memWrite | aluSrc | regWrite |aluOp  | mocsr |
+| branch | jump | dato_s | mem_w    | alu_s  | reg_w    | sel   | mocsr |
 |--------|------|--------|----------|--------|----------|-------|-------|
 | 0      | 0    | 2'b01  | 0        | 1      | 1        | 2'b00 | 2'b00 |  LW     (3)
 | 0      | 0    | 2'bxx  | 1        | 1      | 0        | 2'b00 | 2'b00 |  SW     (35)
@@ -12,44 +12,44 @@
 | 0      | 1    | 2'b10  | 0        | x      | 1        | 2'bxx | 2'b01 |  csr    (115)
 
 
-- a la tabla de la guia a resSrc se le agrego un bit estra
+- a la tabla de la guia a dato_s se le agrego un bit estra
 - mbien se agrego una senial jump
 **/
 
 module mainDeco(
-    input [6:0] op,
+    input [6:0] op_code,
     output wire branch,
     output wire [1:0] jump,
-    output [1:0] resSrc,
-    output wire memWrite,
-    output wire aluSrc,
-    output wire regWrite,
-    output [1:0] aluOp,
+    output [1:0] dato_s,
+    output wire mem_w,
+    output wire alu_s,
+    output wire reg_w,
+    output [1:0] sel,
     output [1:0] mocsr
 );
 
     reg s_branch;
     reg [2:0] s_jump;
-    reg [1:0] s_resSrc;
-    reg s_memWrite;
-    reg s_aluSrc;
-    reg s_regWrite;
-    reg [1:0] s_aluOp;
+    reg [1:0] s_dato_s;
+    reg s_mem_w;
+    reg s_alu_s;
+    reg s_reg_w;
+    reg [1:0] s_sel;
     reg [1:0] s_mocsr;
 
     always @(*)
     begin
-        case (op)
+        case (op_code)
             // -- lw -------------------------------------------------------------------------------   
             3:
             begin
                 s_branch = 0;
                 s_jump = 2'b01;
-                s_resSrc = 2'b01;
-                s_memWrite = 0;
-                s_aluSrc = 1;
-                s_regWrite = 1;
-                s_aluOp = 2'b00;
+                s_dato_s = 2'b01;
+                s_mem_w = 0;
+                s_alu_s = 1;
+                s_reg_w = 1;
+                s_sel = 2'b00;
                 s_mocsr = 2'b00;
             end
             // -- sw -------------------------------------------------------------------------------       
@@ -57,11 +57,11 @@ module mainDeco(
             begin
                 s_branch = 0;
                 s_jump = 2'b01;
-                s_resSrc = 2'bx;
-                s_memWrite = 1;
-                s_aluSrc = 1;
-                s_regWrite = 0;
-                s_aluOp = 2'b00;
+                s_dato_s = 2'bx;
+                s_mem_w = 1;
+                s_alu_s = 1;
+                s_reg_w = 0;
+                s_sel = 2'b00;
                 s_mocsr = 2'b00;
             end
             // -- R-Type ---------------------------------------------------------------------------
@@ -69,11 +69,11 @@ module mainDeco(
             begin
                 s_branch = 0;
                 s_jump = 2'b01;
-                s_resSrc = 2'b00;
-                s_memWrite = 0;
-                s_aluSrc = 0;
-                s_regWrite = 1;
-                s_aluOp = 2'b10;
+                s_dato_s = 2'b00;
+                s_mem_w = 0;
+                s_alu_s = 0;
+                s_reg_w = 1;
+                s_sel = 2'b10;
                 s_mocsr = 2'b00;
             end
             // -- B-Type ---------------------------------------------------------------------------
@@ -81,11 +81,11 @@ module mainDeco(
             begin
                 s_branch = 1;
                 s_jump = 2'b01;
-                s_resSrc = 2'bx;
-                s_memWrite = 0;
-                s_aluSrc = 0;
-                s_regWrite = 0;
-                s_aluOp = 2'b01;
+                s_dato_s = 2'bx;
+                s_mem_w = 0;
+                s_alu_s = 0;
+                s_reg_w = 0;
+                s_sel = 2'b01;
                 s_mocsr = 2'b00;
             end
             // -- I-Type ---------------------------------------------------------------------------
@@ -93,11 +93,11 @@ module mainDeco(
             begin
                 s_branch = 0;
                 s_jump = 2'b01;
-                s_resSrc = 2'b00;
-                s_memWrite = 0;
-                s_aluSrc = 1;
-                s_regWrite = 1;
-                s_aluOp = 2'b10;
+                s_dato_s = 2'b00;
+                s_mem_w = 0;
+                s_alu_s = 1;
+                s_reg_w = 1;
+                s_sel = 2'b10;
                 s_mocsr = 2'b00;
             end
             // -- jal ------------------------------------------------------------------------------     
@@ -105,11 +105,11 @@ module mainDeco(
             begin
                 s_branch = 0;
                 s_jump = 2'b10;
-                s_resSrc = 2'b10;
-                s_memWrite = 0;
-                s_aluSrc = 1'bx;
-                s_regWrite = 1;
-                s_aluOp = 2'bx;
+                s_dato_s = 2'b10;
+                s_mem_w = 0;
+                s_alu_s = 1'bx;
+                s_reg_w = 1;
+                s_sel = 2'bx;
                 s_mocsr = 2'b00;
             end
             // -- CSR ------------------------------------------------------------------------------     
@@ -117,22 +117,22 @@ module mainDeco(
             begin
                 s_branch = 0;
                 s_jump = 2'b01;
-                s_resSrc = 2'b01;
-                s_memWrite = 0;
-                s_aluSrc = 1'bx;
-                s_regWrite = 1;
-                s_aluOp = 2'bx;
+                s_dato_s = 2'b01;
+                s_mem_w = 0;
+                s_alu_s = 1'bx;
+                s_reg_w = 1;
+                s_sel = 2'bx;
                 s_mocsr = 2'b01; // por ahora, la salida sera csr_rd, despues vere lo de 2'b10->pc
             end
             default:
             begin
                 s_branch = 1'bx;
                 s_jump = 2'b11;
-                s_resSrc = 2'bx;
-                s_memWrite = 1'bx;
-                s_aluSrc = 1'bx;
-                s_regWrite = 1'bx;
-                s_aluOp = 2'bx;
+                s_dato_s = 2'bx;
+                s_mem_w = 1'bx;
+                s_alu_s = 1'bx;
+                s_reg_w = 1'bx;
+                s_sel = 2'bx;
                 s_mocsr = 2'b00;
             end
         endcase
@@ -140,11 +140,11 @@ module mainDeco(
 
     assign branch = s_branch;
     assign jump = s_jump;
-    assign resSrc = s_resSrc;
-    assign memWrite = s_memWrite;
-    assign aluSrc = s_aluSrc;
-    assign regWrite = s_regWrite;
-    assign aluOp = s_aluOp;
+    assign dato_s = s_dato_s;
+    assign mem_w = s_mem_w;
+    assign alu_s = s_alu_s;
+    assign reg_w = s_reg_w;
+    assign sel = s_sel;
     assign mocsr = s_mocsr;
 
 endmodule
