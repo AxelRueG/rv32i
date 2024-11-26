@@ -4,25 +4,25 @@
 module Memory (
     input wire clk,
     input wire en,
-    input wire [15:0] addr,
-    input wire [31:0] inputData,
-    input wire [15:0] pcAddr,
+    input wire [15:0] addr_ram,
+    input wire [31:0] data,
+    input wire [15:0] addr_rom,
 
-    output wire [31:0] instr,
-    output wire [31:0] outputData
+    output wire [31:0] out_rom,
+    output wire [31:0] out_ram
 );
 
     DM data_memory (
         .clk(clk), 
         .we(en),
-        .addres(addr),
-        .wd(inputData),
-        .rd(outputData)
+        .addr(addr_ram),
+        .wd(data),
+        .rd(out_ram)
     );
 
     IM instruction_memory (
-        .pc(pcAddr),
-        .instr(instr)
+        .addr(addr_rom),
+        .rd(out_rom)
     );
     
 endmodule

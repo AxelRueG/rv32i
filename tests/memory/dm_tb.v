@@ -14,12 +14,12 @@ module dm_tb;
     DM uut (
         .clk(clk),
         .we(we),
-        .addres(addr),
+        .addr(addr),
         .wd(wd),
         .rd(rd)
     );
 
-    // configuramos reloj
+    // starting clock
     initial begin
         clk = 0;
         forever #5 clk = ~clk;
@@ -28,14 +28,14 @@ module dm_tb;
     // test
     initial begin
 
-        // estado inicial
+        // inital state
         for (iterator = 0; iterator < 32; iterator = iterator + 1) begin
             addr = iterator;
             #10
             $display("[%d]: [%h]", addr, rd);
         end
 
-        // escribimos algunos valores alazares
+        // write randoms values
         we = 1;
         // changes in registers
         addr = 10;
@@ -50,7 +50,7 @@ module dm_tb;
 
         $display("\nupdating...\n");
         we = 0;
-        // post changes
+        // show updates values
         for (iterator = 0; iterator < 32; iterator = iterator + 1) begin
             addr = iterator;
             #10
