@@ -12,30 +12,30 @@ module rv32i (
     output wire [31:0] instruction
 );
 
-    wire f7, zero, branch, regWrite, aluSrc, memWrite;
+    wire f7, flag, branch, reg_w, alu_s, mem_w;
     wire csr_w, csr_inm;
-    wire [1:0] resSrc, jump, inmSrc, mocsr;
-    wire [2:0] aluControl, f3;
-    wire [6:0] op;
+    wire [1:0] dato_s, jump, inmSrc, mocsr;
+    wire [2:0] alu_op, f3;
+    wire [6:0] op_code;
     wire [15:0] pc;
     wire [31:0] instr;
-    wire [31:0] aluRes;
-    wire [31:0] dataWrite;
-    wire [31:0] dataRead;
+    wire [31:0] alu_res;
+    wire [31:0] write_data;
+    wire [31:0] read_data;
 
     ControlUnit control_unit (
-        .op(op),
+        .op_code(op_code),
         .f3(f3),
         .f7(f7),
-        .zero(zero),
+        .flag(flag),
 
-        .aluControl(aluControl),
-        .resSrc(resSrc),
+        .alu_op(alu_op),
+        .dato_s(dato_s),
         .jump(jump),
         .branch(branch),
-        .memWrite(memWrite),
-        .aluSrc(aluSrc),
-        .regWrite(regWrite),
+        .mem_w(mem_w),
+        .alu_s(alu_s),
+        .reg_w(reg_w),
         .mocsr(mocsr),
         .csr_w(csr_w),
         .csr_inm(csr_inm)
@@ -45,42 +45,42 @@ module rv32i (
         .branch(branch),
         .jump(jump),
         .clk(clk),
-        .readData(dataRead),
-        .resultSrc(resSrc),
+        .read_data(read_data),
+        .dato_s(dato_s),
         .instr(instr),
-        .regWrite(regWrite),
-        .aluSrc(aluSrc),
-        .aluControl(aluControl),
+        .reg_w(reg_w),
+        .alu_s(alu_s),
+        .alu_op(alu_op),
         .csr_w(csr_w),
         .csr_inm(csr_inm),
         .mocsr(mocsr),
 
-        .key(key),
+        .key(key), // tecla dell teclado presionado
 
-        .aluRes(aluRes),
-        .zero(zero),
-        .op(op),
+        .alu_res(alu_res),
+        .flag(flag),
+        .op_code(op_code),
         .f3(f3),
         .f7(f7),
-        .writeData(dataWrite),
+        .write_data(write_data),
         .pc(pc)
     );
 
     Memory memory (
         .clk(clk),
-        .en(memWrite),
-        .addr(aluRes[15:0]),
-        .inputData(dataWrite),
-        .pcAddr(pc),
+        .en(mem_w),
+        .addr_ram(alu_res[15:0]),
+        .data(write_data),
+        .addr_rom(pc),
 
-        .instr(instr),
-        .outputData(dataRead)
+        .out_rom(instr),
+        .out_ram(read_data)
     );
 
     assign instrAddr = pc;
-    assign aluResult = aluRes;
-    assign memoryOut = dataRead;
-    assign memoryIn = dataWrite;
+    assign aluResult = alu_res;
+    assign memoryOut = read_data;
+    assign memoryIn = write_data;
     assign instruction = instr;
     
 endmodule

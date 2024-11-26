@@ -29,7 +29,7 @@ module DataPath (
     // ---------------------------------------------------------------------------------------------
     // OUTPUTS
     // ---------------------------------------------------------------------------------------------
-    output wire [31:0] alu_r, // esto deberia ir a la memoria
+    output wire [31:0] alu_res, // esto deberia ir a la memoria
     output wire flag, // por lo pronto no se como funcionara esto
     output wire [6:0] op_code,
     output wire [2:0] f3,
@@ -181,7 +181,7 @@ module DataPath (
 
     // --- outputs ---------------------------------------------------------------------------------
     assign pc = s_pck;
-    assign alu_r = s_alu_res;
+    assign alu_res = s_alu_res;
     assign f3 = instr[14:12];
     assign f7 = instr[30];
     assign op_code = instr[6:0];

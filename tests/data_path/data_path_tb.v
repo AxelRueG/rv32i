@@ -20,7 +20,7 @@ module data_path_tb;
     reg key;
 
     // outputs
-    wire [31:0] alu_r;
+    wire [31:0] alu_res;
     wire flag;
     wire [6:0] op_code;
     wire [2:0] f3;
@@ -46,7 +46,7 @@ module data_path_tb;
         .key(key),
 
         // outputs
-        .alu_r(alu_r),
+        .alu_res(alu_res),
         .flag(flag),
         .op_code(op_code),
         .f3(f3),
