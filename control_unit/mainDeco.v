@@ -24,8 +24,7 @@ module mainDeco(
     output wire mem_w,
     output wire alu_s,
     output wire reg_w,
-    output [1:0] sel,
-    output [1:0] mocsr
+    output [1:0] sel
 );
 
     reg s_branch;
@@ -35,7 +34,6 @@ module mainDeco(
     reg s_alu_s;
     reg s_reg_w;
     reg [1:0] s_sel;
-    reg [1:0] s_mocsr;
 
     always @(*)
     begin
@@ -50,7 +48,6 @@ module mainDeco(
                 s_alu_s = 1;
                 s_reg_w = 1;
                 s_sel = 2'b00;
-                s_mocsr = 2'b00;
             end
             // -- sw -------------------------------------------------------------------------------       
             35:
@@ -62,7 +59,6 @@ module mainDeco(
                 s_alu_s = 1;
                 s_reg_w = 0;
                 s_sel = 2'b00;
-                s_mocsr = 2'b00;
             end
             // -- R-Type ---------------------------------------------------------------------------
             51:
@@ -74,7 +70,6 @@ module mainDeco(
                 s_alu_s = 0;
                 s_reg_w = 1;
                 s_sel = 2'b10;
-                s_mocsr = 2'b00;
             end
             // -- B-Type ---------------------------------------------------------------------------
             99:
@@ -86,7 +81,6 @@ module mainDeco(
                 s_alu_s = 0;
                 s_reg_w = 0;
                 s_sel = 2'b01;
-                s_mocsr = 2'b00;
             end
             // -- I-Type ---------------------------------------------------------------------------
             19:
@@ -98,7 +92,6 @@ module mainDeco(
                 s_alu_s = 1;
                 s_reg_w = 1;
                 s_sel = 2'b10;
-                s_mocsr = 2'b00;
             end
             // -- jal ------------------------------------------------------------------------------     
             111:
@@ -110,20 +103,18 @@ module mainDeco(
                 s_alu_s = 1'bx;
                 s_reg_w = 1;
                 s_sel = 2'bx;
-                s_mocsr = 2'b00;
             end
-            // -- CSR ------------------------------------------------------------------------------     
-            7'b1110011:
-            begin
-                s_branch = 0;
-                s_jump = 2'b01;
-                s_dato_s = 2'b01;
-                s_mem_w = 0;
-                s_alu_s = 1'bx;
-                s_reg_w = 1;
-                s_sel = 2'bx;
-                s_mocsr = 2'b01; // por ahora, la salida sera csr_rd, despues vere lo de 2'b10->pc
-            end
+            // // -- CSR ------------------------------------------------------------------------------     
+            // 7'b1110011:
+            // begin
+            //     s_branch = 0;
+            //     s_jump = 2'b01;
+            //     s_dato_s = 2'b01;
+            //     s_mem_w = 0;
+            //     s_alu_s = 1'bx;
+            //     s_reg_w = 1;
+            //     s_sel = 2'bx;
+            // end
             default:
             begin
                 s_branch = 1'bx;
@@ -133,7 +124,6 @@ module mainDeco(
                 s_alu_s = 1'bx;
                 s_reg_w = 1'bx;
                 s_sel = 2'bx;
-                s_mocsr = 2'b00;
             end
         endcase
     end
@@ -145,6 +135,6 @@ module mainDeco(
     assign alu_s = s_alu_s;
     assign reg_w = s_reg_w;
     assign sel = s_sel;
-    assign mocsr = s_mocsr;
+    // assign mocsr = s_mocsr;
 
 endmodule

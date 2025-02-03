@@ -14,11 +14,7 @@ module ControlUnit (
     output wire branch,
     output wire mem_w,
     output wire alu_s,
-    output wire reg_w,
-    //csr output
-    output wire [1:0] mocsr,
-    output wire csr_w,
-    output wire csr_inm
+    output wire reg_w
 );
 
     wire [2:0] s_alu_op;
@@ -31,11 +27,6 @@ module ControlUnit (
     wire s_aluSrc;
     wire s_regWrite;
 
-    wire [1:0] s_mocsr;
-    wire s_csr_w;
-    wire s_csr_imn;
-    // wire s_csr_rd;
-
     reg r_branch; // salida, incluye la comparacion con el resultado de la ALU
 
     mainDeco main_decode (
@@ -46,8 +37,7 @@ module ControlUnit (
         .mem_w(s_memWrite),
         .alu_s(s_aluSrc),
         .reg_w(s_regWrite),
-        .sel(s_sel),
-        .mocsr(s_mocsr)
+        .sel(s_sel)
     );
 
     aluDeco alu_decode(
@@ -56,13 +46,6 @@ module ControlUnit (
         .f3(f3),
         .sel(s_sel),
         .alu_op(s_alu_op)
-    );
-
-    csrDeco csr_decode (
-        .op(op_code),
-        .f3(f3),
-        .csr_w(s_csr_w),
-        .csr_inm(s_csr_inm)
     );
 
     always @(*) begin
@@ -76,8 +59,5 @@ module ControlUnit (
     assign mem_w = s_memWrite;
     assign alu_s = s_aluSrc;
     assign reg_w = s_regWrite;
-    assign mocsr = s_mocsr;
-    assign csr_w = s_csr_w;
-    assign csr_inm = s_csr_inm;
     
 endmodule
