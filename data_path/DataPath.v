@@ -5,7 +5,6 @@
 `include "./data_path/BR.v"
 `include "./data_path/ALU.v"
 `include "./data_path/SE.v"
-`include "./data_path/CSR.v"
 
 module DataPath (
     // ---------------------------------------------------------------------------------------------
@@ -20,11 +19,6 @@ module DataPath (
     input wire reg_w,
     input wire alu_s,
     input wire [2:0] alu_op,
-    input wire csr_w,
-    input wire csr_inm,
-    input wire [1:0] mocsr,
-
-    input wire key,
 
     // ---------------------------------------------------------------------------------------------
     // OUTPUTS
@@ -53,18 +47,9 @@ module DataPath (
     wire [31:0] s_src2;
     wire [31:0] s_wd3;
 
-    wire [31:0] s_csr_wd;
-    wire [31:0] s_csr_rd;
-    wire [31:0] s_read_data;
-
-    // csr
-    wire [1:0] s_op_m;
-    wire [31:0] s_excep_addr;
-
     // constantes
     reg [31:0] cuatro = 4;
     reg [31:0] addr_reset = 0;
-    // reg [31:0] addr_excep = 100;
 
     // --- conections ------------------------------------------------------------------------------
     // FETCH    
@@ -91,8 +76,8 @@ module DataPath (
         .e1(addr_reset),
         .e2(s_pc_next),
         .e3(s_pc_jump),
-        .e4(s_excep_addr),
-        .sel(jump | s_op_m),
+        .e4(addr_reset), // <-- here add a addr for except (mtvec)
+        .sel(jump),
         .sal(s_pck1)
     );
 
@@ -137,46 +122,11 @@ module DataPath (
 
     Mux4x1 m3 (
         .e1(s_alu_res),
-        .e2(s_read_data),
+        .e2(read_data),
         .e3(s_inm),
         .e4(s_pc_next),
         .sel(dato_s),
         .sal(s_wd3)
-    );
-
-    // CSR
-    Mux2x1 m5 (
-        .e1(s_srcA),
-        .e2({27'b0, instr[19:15]}),
-        .sel(csr_inm),
-        .sal(s_csr_wd)
-    );
-
-    CSR csr (
-        .instr(instr),
-        .ram_addr(s_alu_res[15:0]),
-        .rom_addr(s_pck),
-        .op_m(s_op_m), // basicamente este op_m es una mascara para tomar la direccion de excepcion o retorno
-        .addr_o(s_excep_addr),
-
-        .key(key),
-
-        .clk(clk),
-        .csr_w(csr_w),
-        .csr(instr[31:20]),
-        .wd(s_csr_wd),
-        .rd(s_csr_rd)
-    );
-
-    // necesitamos un mux para seleccionar la data de csr o la data leida de memoria
-
-    Mux4x1 m6 (
-        .e1(read_data),
-        .e2(s_csr_rd),
-        .e3({16'b0, s_pck}),
-        .e4(32'bx),
-        .sel(mocsr),
-        .sal(s_read_data)
     );
 
     // --- outputs ---------------------------------------------------------------------------------

@@ -40,10 +40,10 @@ module data_path_tb;
         .alu_s(alu_s),
         .alu_op(alu_op),
 
-        .csr_w(csr_w),
-        .csr_inm(csr_inm),
-        .mocsr(mocsr),
-        .key(key),
+        // .csr_w(csr_w),
+        // .csr_inm(csr_inm),
+        // .mocsr(mocsr),
+        // .key(key),
 
         // outputs
         .alu_res(alu_res),
@@ -76,6 +76,7 @@ module data_path_tb;
         dato_s = 2'b00;
         instr = 32'b00000001010110101000101100010011; // add -> rd22 (deberia ser 22)
         //      32'b000000010101 10101 000 10110 0010011
+        //      32'                             
         #10
         dato_s = 2'b01;
         instr = 32'b00000001011010101000101110010011; // add -> rd23 (deberia ser 23)

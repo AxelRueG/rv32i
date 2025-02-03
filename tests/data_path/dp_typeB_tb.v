@@ -28,19 +28,18 @@ module dp_tpyeB_tb;
         .branch(branch),
         .jump(jump),
         .clk(clk),
-        .readData(readData),
-        .resultSrc(resultSrc),
-        .inmSrc(inmSrc),
+        .read_data(readData),
+        .dato_s(resultSrc),
         .instr(instr),
-        .regWrite(regWrite),
-        .aluSrc(aluSrc),
-        .aluControl(aluControl),
-        .aluRes(aluRes),
-        .zero(zero),
-        .op(op),
+        .reg_w(regWrite),
+        .alu_s(aluSrc),
+        .alu_op(aluControl),
+        .alu_res(aluRes),
+        .flag(zero),
+        .op_code(op),
         .f3(f3),
         .f7(f7),
-        .writeData(writeData),
+        .write_data(writeData),
         .pc(pc)
     );
 
@@ -74,7 +73,8 @@ module dp_tpyeB_tb;
         aluSrc = 0; // optamos por la salida del BR
         resultSrc = 2'b10;
         // 0 0 000001 0010 0 -> offset = 36  
-        instr = 32'b00000011010110101000001000000000; // BEQ rd21,rd21,36
+        instr = 32'b00000011010110101000001001100011; // BEQ rd21,rd21,36
+        //      32'h035a8200
         #10
 
         // --- CARGAMOS UN DATO EN LOS REGISTROS -----------------------------------
@@ -85,7 +85,8 @@ module dp_tpyeB_tb;
         aluSrc = 1; // optamos por la salida del SE
         resultSrc = 2'b00; // guardamos el resultado de la ALU
         // 0 0 000001 0010 0 -> offset = 36  
-        instr = 32'b00000001010100000000000100000000; // ADDI rd2,rd0,21
+        instr = 32'b00000001010100000000000100010011; // ADDI rd2,rd0,21
+        //      32'h01500100
         #10
 
         // --- COMPROBAMOS QUE NO EJECUTE EL SALTO ---------------------------------
@@ -98,7 +99,8 @@ module dp_tpyeB_tb;
         // 0 0 000001 0010 0 -> 36  
         // 1 1 111110 1101 1 -> complemento a1 -> 36  
         // 1 1 111110 1110 0 -> complemento a2 -> -36 (offset)  
-        instr = 32'b11111100001000000000111010000000; // BEQ rd0, rd2, -36 
+        instr = 32'b11111100001000000000111011100011; // BEQ rd0, rd2, -36 
+        //      32'hfc200e80
         #10
         $display("finished...");
         $finish;

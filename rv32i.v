@@ -14,8 +14,7 @@ module rv32i (
 );
 
     wire f7, flag, branch, reg_w, alu_s;
-    wire csr_w, csr_inm;
-    wire [1:0] dato_s, jump, inmSrc, mocsr;
+    wire [1:0] dato_s, jump;
     wire [2:0] alu_op, f3;
     wire [6:0] op_code;
     wire [31:0] s_alu_res;    
@@ -32,10 +31,7 @@ module rv32i (
         .branch(branch),
         .mem_w(mem_w),
         .alu_s(alu_s),
-        .reg_w(reg_w),
-        .mocsr(mocsr),
-        .csr_w(csr_w),
-        .csr_inm(csr_inm)
+        .reg_w(reg_w)
     );
 
     DataPath data_path (
@@ -48,11 +44,6 @@ module rv32i (
         .reg_w(reg_w),
         .alu_s(alu_s),
         .alu_op(alu_op),
-        .csr_w(csr_w),
-        .csr_inm(csr_inm),
-        .mocsr(mocsr),
-
-        .key(key), // tecla dell teclado presionado
 
         .alu_res(alu_res),
         .flag(flag),

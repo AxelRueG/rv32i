@@ -34,10 +34,11 @@ module top_tb;
         key = 0;
 
         for (iter = 0; iter<64; iter=iter+1) begin
-            #2
-            $display("[%d : %d] -> <rom: %h, ram: %h>", iter, pc, instr, data);
-            #8
+            // #2
+            // $display("[%d : %d] -> <rom: %h, ram: %h>", iter, pc, instr, data);
+            // #8
             // si no hay mas intrucciones corta la ejecucion
+            #10
             if (instr === 32'bx) begin
                 $finish;
             end

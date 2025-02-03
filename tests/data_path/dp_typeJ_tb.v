@@ -28,19 +28,18 @@ module dp_typeJ_tb;
         .branch(branch),
         .jump(jump),
         .clk(clk),
-        .readData(readData),
-        .resultSrc(resultSrc),
-        .inmSrc(inmSrc),
+        .read_data(readData),
+        .dato_s(resultSrc),
         .instr(instr),
-        .regWrite(regWrite),
-        .aluSrc(aluSrc),
-        .aluControl(aluControl),
-        .aluRes(aluRes),
-        .zero(zero),
-        .op(op),
+        .reg_w(regWrite),
+        .alu_s(aluSrc),
+        .alu_op(aluControl),
+        .alu_res(aluRes),
+        .flag(zero),
+        .op_code(op),
         .f3(f3),
         .f7(f7),
-        .writeData(writeData),
+        .write_data(writeData),
         .pc(pc)
     );
 
@@ -66,7 +65,7 @@ module dp_typeJ_tb;
         // 0 0000011010 1 00000000 00100 0000000 -> divicion de datos 
         // rd = 00100 -> x4
         // inm = 0 00000000 1 0000011010 0 -> 2100
-        instr = 32'b00000011010100000000001000000000; // BEQ rd21,rd21,36
+        instr = 32'b00000011010100000000001001101111; // BEQ rd21,rd21,36
         #10
 
         // --- comprovamos el valor guardado en el reg------------------------------
@@ -75,7 +74,7 @@ module dp_typeJ_tb;
         aluControl = 3'b000; // sumaremos zero al valor del registro 
         aluSrc = 0; // optamos por la salida del SE
         resultSrc = 2'b00; // guardamos el resultado de la ALU
-        instr = 32'b00000000000000100000001010000000; // ADDI rd2,rd0,21
+        instr = 32'b00000000000000100000001011101111; // ADDI rd2,rd0,21
         #10
 
         $display("finished...");
