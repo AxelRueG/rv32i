@@ -1,4 +1,4 @@
-`timescale 1ps/1ps
+`timescale 1ps/1ps`
 
 module CSR (
     // para mantener actualizado y controlado los registros
@@ -19,19 +19,21 @@ module CSR (
     output reg [31:0] rd
 );
 
-    // def and initialization of registers
-    reg [31:0] mstatus = 32'h00000000;
-    reg [31:0] fflags = 32'h00000000;
-    reg [31:0] frm = 32'h00000000;
-    reg [31:0] fcsr = 32'h00000000;
-    reg [31:0] mie = 32'h00000000; // creo que este es el que necesito para las interrupciones
-    reg [31:0] mtvec = 32'h00000000;
-    reg [31:0] mscratch = 32'h00000000;
-    reg [31:0] mepc = 32'h00000000;
-    reg [31:0] mcause = 32'h00000000;
-    reg [31:0] s_rd = 32'h00000000;
+    // ---------------------------------------------------------------------------------------------
+    // REGISTROS CSR
+    // ---------------------------------------------------------------------------------------------
+    reg [31:0] mstatus = 32'h00000000; // habilitamos el manjo de excepciones
+    reg [31:0] fflags = 32'h00000000;  // 
+    reg [31:0] frm = 32'h00000000;     // 
+    reg [31:0] fcsr = 32'h00000000;    // 
+    reg [31:0] mie = 32'h00000000;     // creo que este es el que necesito para las interrupciones
+    reg [31:0] mtvec = 32'h00000000;   // direccion del manejador de excepcions
+    reg [31:0] mscratch = 32'h00000000;//  
+    reg [31:0] mepc = 32'h00000000;    // 
+    reg [31:0] mcause = 32'h00000000;  // 
+    reg [31:0] s_rd = 32'h00000000;    // 
     
-    // direcciones de los registros
+    // DIRECCIONES ---------------------------------------------------------------------------------
     parameter ADDR_mstatus = 12'h000;
     parameter ADDR_fflags = 12'h001;
     parameter ADDR_frm = 12'h002;
@@ -42,13 +44,17 @@ module CSR (
     parameter ADDR_mepc = 12'h041;
     parameter ADDR_mcause = 12'h042;
     
+    // AUX -----------------------------------------------------------------------------------------
     parameter ROM_MAX_ADDR = 508;
-
-    // auxiliares
     reg [6:0] ope_code;
     reg en_mepc_excep;
 
-
+    /**
+     * CUANDO CAMBIE CUALQUIER VALOR DE ENTRADA:
+     * 1. todas las seniales de excepcion se ponen en ZERO
+     * 2. si mstatus = 1 => error handle enable
+     * 3. asignamos el valor del registro en la salida RD
+     */
     always @(*) begin
 
         en_mepc_excep = 0;
@@ -57,8 +63,10 @@ module CSR (
         op_m = 2'b00;
         addr_o = 32'bx;
         ope_code = instr[6:0];
-        // Si MSTATUS esta enable entonces podemos menjar las excepciones
+
         if (mstatus) begin
+
+            // Instruccion invalida
             if (
                 ope_code != 3   &&
                 ope_code != 19  &&
@@ -74,6 +82,7 @@ module CSR (
                 en_mepc_excep = 1;
             end 
             
+            // Direccion RAM invalida
             if ((ope_code == 3 || ope_code == 35) && 
                 ($signed(ram_addr) < 0 || ram_addr > 16'h007c )) 
             begin
@@ -83,6 +92,7 @@ module CSR (
                 en_mepc_excep = 1;
             end 
             
+            // Direccion invalida de pc
             if (rom_addr > ROM_MAX_ADDR) begin
                 op_m = 2'b11;
                 addr_o = mtvec;
@@ -97,6 +107,7 @@ module CSR (
                 mcause = 0;
                 en_mepc_excep = 1;
             end 
+
             // Instruction MRET
             if (instr[14:12] == 3'b000 && csr == ADDR_frm && ope_code == 115) begin
                 op_m = 2'b11;
@@ -105,6 +116,7 @@ module CSR (
                 // en_mepc_excep = 0;
             end
 
+            // ITERRUPCION DE 'TECLADO'
             if (mie != 32'b0 && key == 1) begin
                 op_m = 2'b11;
                 addr_o = mtvec;
@@ -116,7 +128,7 @@ module CSR (
         end
 
 
-        // ---- definimos la salida del rd ---------------------------------------------------------
+        // ACTUALIZAMOS LA SALIDA ------------------------------------------------------------------
         case (csr)
             ADDR_mstatus:  rd = mstatus; 
             ADDR_fflags:   rd = fflags; 
@@ -131,7 +143,9 @@ module CSR (
         endcase
     end
 
+    // ---------------------------------------------------------------------------------------------
     // guardamos el pc la la instruccion que genero la excepcion
+    // ---------------------------------------------------------------------------------------------
     always @(negedge(clk))
     begin
         if (en_mepc_excep) begin
@@ -152,7 +166,9 @@ module CSR (
     // end
 
 
-    // en caso de flanco de subida actualizamos los registros con write_data
+    // ---------------------------------------------------------------------------------------------
+    // ESCRIBO LOS REGISTROS
+    // ---------------------------------------------------------------------------------------------
     always @(posedge clk)
     begin
         if (csr_w) begin
