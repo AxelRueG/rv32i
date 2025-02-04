@@ -18,12 +18,11 @@ module CSR_regs (
 );
     
     // -- REGISTROS CSR ---
-    reg [31:0] mstatus; // para habilitar las excepciones
-    reg [31:0] mepc;    // guarda la direccion en la que se genero la excepcion
-    reg [31:0] mcause;  // causa de la excepcion
-    reg [31:0] mtvec;   // direccion de la rutina manejadora de excepciones (vector de excepts)
-    reg [31:0] mip;     // indica el estado de las excepciones
-    reg [31:0] s_data_out;
+    reg [31:0] mstatus = 0; // para habilitar las excepciones
+    reg [31:0] mepc = 0;    // guarda la direccion en la que se genero la excepcion
+    reg [31:0] mcause = 0;  // causa de la excepcion
+    reg [31:0] mtvec = 0;   // direccion de la rutina manejadora de excepciones (vector de excepts)
+    reg [31:0] mip = 0;     // indica el estado de las excepciones
 
     // -- DIRECCIONES ---
     parameter ADDR_MSTATUS = 12'h000;
@@ -31,6 +30,21 @@ module CSR_regs (
     parameter ADDR_MCAUSE = 12'h042;
     parameter ADDR_MTVEC = 12'h005;
     parameter ADDR_MIP = 12'h044;
+
+    reg [31:0] s_data_out;
+
+    // -- lectura del registro csr ---
+    always @(*) 
+    begin
+        case (csr_addr)
+            ADDR_MSTATUS: s_data_out <= mstatus;
+            ADDR_MEPC:    s_data_out <= mepc;
+            ADDR_MCAUSE:  s_data_out <= mcause;
+            ADDR_MTVEC:   s_data_out <= mtvec;
+            ADDR_MIP:     s_data_out <= mip;
+            default:      s_data_out <= 32'bx;
+        endcase
+    end
 
     // -- escritura del registro csr ---
     always @(posedge(clk)) 
@@ -44,19 +58,6 @@ module CSR_regs (
                 ADDR_MIP:     mip     = data_in;
             endcase    
         end
-    end
-
-    // -- lectura del registro csr ---
-    always @(*) 
-    begin
-        case (csr_addr)
-            ADDR_MSTATUS: s_data_out <= mstatus;
-            ADDR_MEPC:    s_data_out <= mepc;
-            ADDR_MCAUSE:  s_data_out <= mcause;
-            ADDR_MTVEC:   s_data_out <= mtvec;
-            ADDR_MIP:     s_data_out <= mip;
-            default:      s_data_out <= 32'bx;
-        endcase
     end
 
     assign data_out = s_data_out;

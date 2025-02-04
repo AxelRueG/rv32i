@@ -18,23 +18,32 @@ module rv32i (
     wire [2:0] alu_op, f3;
     wire [6:0] op_code;
     wire [31:0] s_alu_res;    
+    wire s_csr_w;
+    wire s_csr_data_s;
+    wire s_data_read_sel;
 
     ControlUnit control_unit (
+        // --- INPUTS ---
         .op_code(op_code),
         .f3(f3),
         .f7(f7),
         .flag(flag),
-
+        // --- OUTPUTS ---
         .alu_op(alu_op),
         .dato_s(dato_s),
         .jump(jump),
         .branch(branch),
         .mem_w(mem_w),
         .alu_s(alu_s),
-        .reg_w(reg_w)
+        .reg_w(reg_w),
+        // csr control signals
+        .csr_w(s_csr_w),
+        .csr_data_s(s_csr_data_s),
+        .data_read_sel(s_data_read_sel)
     );
 
     DataPath data_path (
+        // --- INPUTS ---
         .branch(branch),
         .jump(jump),
         .clk(clk),
@@ -44,7 +53,11 @@ module rv32i (
         .reg_w(reg_w),
         .alu_s(alu_s),
         .alu_op(alu_op),
-
+        // csr control
+        .csr_w(s_csr_w),
+        .csr_data_s(s_csr_data_s),
+        .data_read_sel(s_data_read_sel),
+        // --- OUTPUTS ---
         .alu_res(alu_res),
         .flag(flag),
         .op_code(op_code),

@@ -11,7 +11,7 @@ module moduleName;
     wire [31:0] data_out;
 
 
-    CSR uut (
+    CSR_regs uut (
         .clk(clk),
         .csr_w(csr_w),
         .csr_addr(csr_addr),
