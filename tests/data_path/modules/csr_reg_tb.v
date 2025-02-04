@@ -30,31 +30,30 @@ module moduleName;
         $dumpfile("./waves/csr_tb.vcd");
         $dumpvars(0, uut);
 
-        data_in = 1;
-        csr_w = 0; csr_addr = 12'h001;
+        csr_w = 1; csr_addr = 12'h001; data_in = 101;
         #10
-        csr_w = 1;
+        csr_w = 0; data_in = 10;
         #10
         data_in = 32'h000000ac;
-        csr_w = 0; csr_addr = 12'h000;
+        csr_w = 1; csr_addr = 12'h000; data_in = 102;
         #10
-        csr_w = 1;
+        csr_w = 0; data_in = 10;
         #10
-        csr_w = 0; csr_addr = 12'h041;
+        csr_w = 1; csr_addr = 12'h041; data_in = 103;
         #10
-        csr_w = 1;
+        csr_w = 0; data_in = 10;
         #10
-        csr_w = 0; csr_addr = 12'h042;
+        csr_w = 1; csr_addr = 12'h042; data_in = 104;
         #10
-        csr_w = 1;
+        csr_w = 0; data_in = 10;
         #10
-        csr_w = 0; csr_addr = 12'h005;
+        csr_w = 1; csr_addr = 12'h005; data_in = 105;
         #10
-        csr_w = 1;
+        csr_w = 0; data_in = 10;
         #10
-        csr_w = 0; csr_addr = 12'h044;
+        csr_w = 1; csr_addr = 12'h044; data_in = 106;
         #10
-        csr_w = 1;
+        csr_w = 0; data_in = 10;
         #10
 
         $finish;

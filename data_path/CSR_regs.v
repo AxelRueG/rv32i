@@ -24,9 +24,6 @@ module CSR (
     reg [31:0] mtvec;   // direccion de la rutina manejadora de excepciones (vector de excepts)
     reg [31:0] mip;     // indica el estado de las excepciones
     reg [31:0] s_data_out;
-    // reg [31:0] m;
-    // reg [31:0] m;
-    // reg [31:0] m;
 
     // -- DIRECCIONES ---
     parameter ADDR_MSTATUS = 12'h000;
@@ -35,30 +32,32 @@ module CSR (
     parameter ADDR_MTVEC = 12'h005;
     parameter ADDR_MIP = 12'h044;
 
-
+    // -- escritura del registro csr ---
     always @(posedge(clk)) 
     begin
         if (csr_w) begin
-            mstatus = data_in;
-            // case (csr_addr)
-            //     ADDR_MSTATUS: mstatus = data_in;
-            //     ADDR_MEPC:    mepc    = data_in;
-            //     ADDR_MCAUSE:  mcause  = data_in;
-            //     ADDR_MTVEC:   mtvec   = data_in;
-            //     ADDR_MIP:     mip     = data_in;
-            // endcase    
+            case (csr_addr)
+                ADDR_MSTATUS: mstatus = data_in;
+                ADDR_MEPC:    mepc    = data_in;
+                ADDR_MCAUSE:  mcause  = data_in;
+                ADDR_MTVEC:   mtvec   = data_in;
+                ADDR_MIP:     mip     = data_in;
+            endcase    
         end
     end
 
-    always @(csr_addr) 
-    case (csr_addr)
-        ADDR_MSTATUS: s_data_out = mstatus;
-        ADDR_MEPC:    s_data_out = mepc;
-        ADDR_MCAUSE:  s_data_out = mcause;
-        ADDR_MTVEC:   s_data_out = mtvec;
-        ADDR_MIP:     s_data_out = mip;
-        default:      s_data_out = 32'bx;
-    endcase
+    // -- lectura del registro csr ---
+    always @(*) 
+    begin
+        case (csr_addr)
+            ADDR_MSTATUS: s_data_out <= mstatus;
+            ADDR_MEPC:    s_data_out <= mepc;
+            ADDR_MCAUSE:  s_data_out <= mcause;
+            ADDR_MTVEC:   s_data_out <= mtvec;
+            ADDR_MIP:     s_data_out <= mip;
+            default:      s_data_out <= 32'bx;
+        endcase
+    end
 
     assign data_out = s_data_out;
 
