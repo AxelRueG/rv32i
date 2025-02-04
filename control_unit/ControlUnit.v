@@ -14,7 +14,11 @@ module ControlUnit (
     output wire branch,
     output wire mem_w,
     output wire alu_s,
-    output wire reg_w
+    output wire reg_w,
+
+    output wire csr_w,
+    output wire csr_data_s,
+    output wire data_read_sel
 );
 
     wire [2:0] s_alu_op;
@@ -46,6 +50,14 @@ module ControlUnit (
         .f3(f3),
         .sel(s_sel),
         .alu_op(s_alu_op)
+    );
+
+    csrDeco csr_decode(
+        .op(op_code),
+        .f3(f3),
+        .csr_w(csr_w),
+        .csr_data_s(csr_data_s),
+        .data_read_sel(data_read_sel)
     );
 
     always @(*) begin

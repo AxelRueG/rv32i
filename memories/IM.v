@@ -97,6 +97,11 @@ module IM(
         // ROM[58] = 32'hff9ff06f; // jal x0,-8
         // ROM[59] = 32'h00200073; // uret
 
+        ROM[0] = 32'h00529073;
+        ROM[1] = 32'h0000d073;
+        ROM[2] = 32'h00a00893;
+        ROM[3] = 32'h00000073;
+
     end
 
     // The program counter is updated with a step of four

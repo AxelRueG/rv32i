@@ -1,0 +1,89 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x61c563f19de0 .scope module, "IM" "IM" 2 4;
+ .timescale 0 0;
+    .port_info 0 /INPUT 16 "addr";
+    .port_info 1 /OUTPUT 32 "rd";
+P_0x61c563f3e230 .param/l "ROM_ADDR_BITS" 0 2 10, +C4<00000000000000000000000010000000>;
+P_0x61c563f3e270 .param/l "ROM_WIDTH" 0 2 9, +C4<00000000000000000000000000100000>;
+L_0x61c563f67020 .functor BUFZ 32, L_0x61c563f66c90, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x61c563f1a0a0 .array "ROM", 0 127, 31 0;
+v0x61c563f423f0_0 .net *"_ivl_0", 31 0, L_0x61c563f66c90;  1 drivers
+v0x61c563f667c0_0 .net *"_ivl_2", 15 0, L_0x61c563f66e90;  1 drivers
+v0x61c563f668b0_0 .net *"_ivl_4", 13 0, L_0x61c563f66d60;  1 drivers
+L_0x75b688433018 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x61c563f66990_0 .net *"_ivl_6", 1 0, L_0x75b688433018;  1 drivers
+o0x75b68847c0d8 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x61c563f66a70_0 .net "addr", 15 0, o0x75b68847c0d8;  0 drivers
+v0x61c563f66b50_0 .net "rd", 31 0, L_0x61c563f67020;  1 drivers
+L_0x61c563f66c90 .array/port v0x61c563f1a0a0, L_0x61c563f66e90;
+L_0x61c563f66d60 .part o0x75b68847c0d8, 2, 14;
+L_0x61c563f66e90 .concat [ 14 2 0 0], L_0x61c563f66d60, L_0x75b688433018;
+    .scope S_0x61c563f19de0;
+T_0 ;
+    %pushi/vec4 3146771, 0, 32;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 1049747, 0, 32;
+    %ix/load 4, 1, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 16779539, 0, 32;
+    %ix/load 4, 2, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 8396835, 0, 32;
+    %ix/load 4, 3, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 9445923, 0, 32;
+    %ix/load 4, 4, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 18883619, 0, 32;
+    %ix/load 4, 5, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 8835, 0, 32;
+    %ix/load 4, 6, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 4203267, 0, 32;
+    %ix/load 4, 7, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 8397699, 0, 32;
+    %ix/load 4, 8, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 5410931, 0, 32;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 53363, 0, 32;
+    %ix/load 4, 1, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 10487955, 0, 32;
+    %ix/load 4, 2, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %pushi/vec4 115, 0, 32;
+    %ix/load 4, 3, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x61c563f1a0a0, 4, 0;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "IM.v";

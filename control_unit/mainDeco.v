@@ -47,7 +47,7 @@ module mainDeco(
                 s_mem_w = 0;
                 s_alu_s = 1;
                 s_reg_w = 1;
-                s_sel = 2'b00;
+                s_sel = 2'b00;                
             end
             // -- sw -------------------------------------------------------------------------------       
             35:
@@ -104,17 +104,18 @@ module mainDeco(
                 s_reg_w = 1;
                 s_sel = 2'bx;
             end
-            // // -- CSR ------------------------------------------------------------------------------     
-            // 7'b1110011:
-            // begin
-            //     s_branch = 0;
-            //     s_jump = 2'b01;
-            //     s_dato_s = 2'b01;
-            //     s_mem_w = 0;
-            //     s_alu_s = 1'bx;
-            //     s_reg_w = 1;
-            //     s_sel = 2'bx;
-            // end
+            // -- CSR ------------------------------------------------------------------------------     
+            7'b1110011:
+            begin
+                // por ahora basicamente lo trataremes como una de tipo I o R
+                s_branch = 0;
+                s_jump = 2'b01;
+                s_dato_s = 2'b01; // vamos por via de readdata
+                s_mem_w = 0;
+                s_alu_s = 1'bx;
+                s_reg_w = 1;
+                s_sel = 2'bx;
+            end
             default:
             begin
                 s_branch = 1'bx;
