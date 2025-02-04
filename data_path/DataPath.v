@@ -86,7 +86,7 @@ module DataPath (
         .e1(addr_reset),
         .e2(s_pc_next),
         .e3(s_pc_jump),
-        .e4(addr_reset), // <-- here add a addr for except (mtvec)
+        .e4(addr_reset), // <-- here add a addr for except (mtvec|mepc)
         .sel(jump),
         .sal(s_pck1)
     );

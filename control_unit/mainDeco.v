@@ -109,7 +109,7 @@ module mainDeco(
             begin
                 // por ahora basicamente lo trataremes como una de tipo I o R
                 s_branch = 0;
-                s_jump = 2'b01;
+                s_jump = 2'b11;
                 s_dato_s = 2'b01; // vamos por via de readdata
                 s_mem_w = 0;
                 s_alu_s = 1'bx;

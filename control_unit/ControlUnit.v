@@ -32,6 +32,7 @@ module ControlUnit (
     wire s_regWrite;
 
     reg r_branch; // salida, incluye la comparacion con el resultado de la ALU
+    wire [1:0] jump_mask;
 
     mainDeco main_decode (
         .op_code(op_code),
@@ -57,7 +58,8 @@ module ControlUnit (
         .f3(f3),
         .csr_w(csr_w),
         .csr_data_s(csr_data_s),
-        .data_read_sel(data_read_sel)
+        .data_read_sel(data_read_sel),
+        .jump_mask(jump_mask)
     );
 
     always @(*) begin
@@ -66,7 +68,7 @@ module ControlUnit (
 
     assign alu_op = s_alu_op;
     assign dato_s = s_resSrc;
-    assign jump = s_jump;
+    assign jump = s_jump & jump_mask; // jump mask deja pasar todo salvo que sea csrrw|csrrwi
     assign branch = r_branch;
     assign mem_w = s_memWrite;
     assign alu_s = s_aluSrc;
