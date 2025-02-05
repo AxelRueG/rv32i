@@ -4,6 +4,11 @@
 
 module moduleName;
 
+    reg except;
+    reg interrupt;
+    reg [31:0] except_info;
+    wire [31:0] csr_info;
+
     reg clk;
     reg csr_w;
     reg [11:0] csr_addr;
@@ -12,6 +17,11 @@ module moduleName;
 
 
     CSR_regs uut (
+        .except(except),
+        .interrupt(interrupt),
+        .except_info(except_info),
+        .csr_info(csr_info),
+
         .clk(clk),
         .csr_w(csr_w),
         .csr_addr(csr_addr),
@@ -29,6 +39,13 @@ module moduleName;
     
         $dumpfile("./waves/csr_tb.vcd");
         $dumpvars(0, uut);
+
+        /** ----------------------------------------------------------------------------------------
+        FLUJO NORMAL DE CSR
+        ----------------------------------------------------------------------------------------- */
+        except = 0;
+        interrupt = 0;
+        except_info = 0;
 
         csr_w = 1; csr_addr = 12'h001; data_in = 101;
         #10
@@ -54,6 +71,45 @@ module moduleName;
         csr_w = 1; csr_addr = 12'h044; data_in = 106;
         #10
         csr_w = 0; data_in = 10;
+        #10
+
+        /** ----------------------------------------------------------------------------------------
+        FLUJO NORMAL DE CSR
+        ----------------------------------------------------------------------------------------- */
+        except = 1;
+        interrupt = 0;
+
+        // --- EXCEPCION: INSTRUCCION DESCONOCIDA ---
+        //  cause:  00000010 
+        //  status: 00010000 
+        //  pc:     0000000000010100;
+        except_info = 32'b00000010000100000000000000010100;
+        // csr_w = 1; csr_addr = 12'h001; data_in = 101;
+        // #10
+        // csr_w = 0; data_in = 10;
+        // #10
+
+    
+        data_in = 32'h000000ac;
+        csr_w = 1; csr_addr = 12'h000; data_in = 102;
+        #10
+
+        // --- EXCEPCION: ADDR INVALIDA ---
+        //  cause:  00000100 
+        //  status: 00010000 
+        //  pc:     0000000000010100;
+        except_info = 32'b00000100000100000000000000010100;
+        csr_w = 0; data_in = 10;
+        #10
+
+        // --- URET ---
+        except = 0;
+
+        //  cause:  00000000 
+        //  status: 00000010 
+        //  pc:     0000000000000000;
+        except_info = 32'b00000000000000100000000000000000;
+        csr_w = 0; data_in = 10; csr_addr = 12'h002;
         #10
 
         $finish;

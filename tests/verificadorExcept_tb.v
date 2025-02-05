@@ -3,8 +3,8 @@
 
 module verificadorExcept_tb;
 
-    reg [31:0] mstatus;
-    reg [31:0] mip;
+    reg [31:0] csr_info;
+
     reg [15:0] addr_rom;
     reg [15:0] addr_ram;
     reg [31:0] instr;
@@ -16,8 +16,7 @@ module verificadorExcept_tb;
     integer i;
 
     verificadorExcept uut(
-        .mstatus(mstatus),
-        .mip(mip),
+        .csr_info(csr_info),
         .addr_rom(addr_rom),
         .addr_ram(addr_ram),
         .instr(instr),
@@ -30,8 +29,7 @@ module verificadorExcept_tb;
         $dumpfile("./waves/vexcept_tb.vcd");
         $dumpvars(0, uut);
 
-        mip = 0; // no estan habilitadas las interrupciones (v1)
-        mstatus = 0;
+        csr_info = 0;
         
         for (i=0; i<2; i=i+1) begin
             // primero una intruccion R con direcciones validas
@@ -60,7 +58,7 @@ module verificadorExcept_tb;
             addr_ram = 32'h00000000;
             #10
 
-            mstatus = 1;
+            csr_info = 1;
         end
 
         $finish;

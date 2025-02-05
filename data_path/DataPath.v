@@ -26,6 +26,12 @@ module DataPath (
     input wire csr_data_s, // selector de dato de entrada a csr
     input wire data_read_sel, // selector de read_data que se conecta a RB
 
+    // -- exception
+    input except,
+    input interrupt,
+    input [31:0] except_info,
+    
+
     // ---------------------------------------------------------------------------------------------
     // OUTPUTS
     // ---------------------------------------------------------------------------------------------
@@ -35,7 +41,10 @@ module DataPath (
     output wire [2:0] f3,
     output wire f7,
     output wire [31:0] write_data,
-    output wire [15:0] pc
+    output wire [15:0] pc,
+
+    // -- csr
+    output [31:0] csr_info
 );
 
     // --- intern signals --------------------------------------------------------------------------
@@ -86,7 +95,7 @@ module DataPath (
         .e1(addr_reset),
         .e2(s_pc_next),
         .e3(s_pc_jump),
-        .e4(addr_reset), // <-- here add a addr for except (mtvec|mepc)
+        .e4(s_csr_data_out), // <-- here add a addr for except (mtvec|mepc)
         .sel(jump),
         .sal(s_pck1)
     );
@@ -148,6 +157,11 @@ module DataPath (
     );
 
     CSR_regs csr_registers (
+        .except(except),
+        .interrupt(interrupt),
+        .except_info(except_info),
+        .csr_info(csr_info),
+
         .clk(clk),
         .csr_w(csr_w),
         .csr_addr(instr[31:20]),

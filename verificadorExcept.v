@@ -1,10 +1,20 @@
 /**
 CONTROLADOR ENCARGADO DE VERIFICAR EXCEPCIONES
+
+implementado:
+[*] csrrw
+[*] csrrwi
+[*] uret
+[*] ecall
+[*] ebreak
+[*] deteccion de excepcion mcause 2
+[*] deteccion de excepcion mcause 4
+[*] deteccion de excepcion mcause 0
+[*] ir a manejador
 */
 
 module verificadorExcept (
-    input [31:0] mstatus, // reg csr para saber si estan activas las excepciones
-    input [31:0] mip,     // reg csr para saber si se atienden interrupciones
+    input [31:0] csr_info, // senial compuesta por mstatus y mip
 
     // entradas que debemos comprovar
     input [15:0] addr_rom, // instruccion desalineada
@@ -14,9 +24,9 @@ module verificadorExcept (
     // TODO: debemos agregar aca el valor de la direccion de memoria es modificada por el pulsador
 
     // salidas
-    output exception, // 1 => ocurrio una excepcion
+    output reg exception, // 1 => ocurrio una excepcion
     output interrup,  // 1 => ocurrio una interrupcion
-    output [31:0] excep_info // aca va a estar codificado la causa y la direccion generadora
+    output reg [31:0] excep_info // aca va a estar codificado la causa y la direccion generadora
 );
     // parametros del procesador
     parameter MAX_RAM_SIZE = 16'h001f;
@@ -37,10 +47,13 @@ module verificadorExcept (
         s_mcause = 0;
         s_cause_type = 0;
         s_mret = 0;
-        s_mstatus = 0;
+        // estado inicial de mstatus
+        s_mstatus = 8'h01;
+        if (csr_info[15:0] == 0)
+            s_mstatus = 8'h00;
 
         // si estan activas las excepciones
-        if (mstatus == 1) begin
+        if (csr_info[15:0] == 1) begin
             
             // Instruccion invalida
             if (
@@ -79,10 +92,34 @@ module verificadorExcept (
                 s_exception = 1;
             end 
 
+            // ECALL
+            if (instr == 32'h00000073) begin
+                s_mcause = 11;
+                s_mret = addr_rom;
+                s_cause_type = 0;
+                s_mstatus = 8'h10;
+                s_exception = 1;
+            end 
+
+            // EBREAK
+            if (instr == 32'h00100073) begin
+                s_mcause = 3;
+                s_mret = addr_rom;
+                s_cause_type = 0;
+                s_mstatus = 8'h10;
+                s_exception = 1;
+            end 
+
+            // // URET (lo vamos a tratar como una excepcion para actualizar todo)
+            // if (instr == 32'h00100073) begin
+            //     s_cause_type = 0;
+            //     s_mstatus = 8'h01;
+            // end 
         end
+        
+        exception = s_exception;
+        excep_info = { s_cause_type, s_mcause, s_mstatus, s_mret };
     end
 
-    assign exception = s_exception;
-    assign excep_info = { s_cause_type, s_mcause, s_mstatus, s_mret };
     
 endmodule
