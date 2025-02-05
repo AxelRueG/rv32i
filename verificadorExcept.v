@@ -19,19 +19,26 @@ module verificadorExcept (
     output [31:0] excep_info // aca va a estar codificado la causa y la direccion generadora
 );
     // parametros del procesador
-    parameter MAX_RAM_SIZE = 16'h007c;
-    parameter MAX_ROM_SIZE = 16'h007c;
+    parameter MAX_RAM_SIZE = 16'h001f;
+    parameter MAX_ROM_SIZE = 16'h01fc; // 127 direcciones de memeoria alineadas de a 4 -> 508
 
 
     // seniales que generar una salida conpuesta codificada con la informacion de la excep
-    reg [6:0] s_mcause = 0;
-    reg s_cause_type = 0;
-    reg [15:0] s_mret = 0;
-    reg [7:0] s_mstatus = 0; 
+    reg [6:0] s_mcause;
+    reg s_cause_type;
+    reg [15:0] s_mret;
+    reg [7:0] s_mstatus;
 
-    reg s_exception = 0;
+    reg s_exception;
 
     always @(*) begin
+        // reseteamos todas las seniales a zero
+        s_exception = 0;
+        s_mcause = 0;
+        s_cause_type = 0;
+        s_mret = 0;
+        s_mstatus = 0;
+
         // si estan activas las excepciones
         if (mstatus == 1) begin
             
@@ -75,7 +82,7 @@ module verificadorExcept (
         end
     end
 
-    assign excepcion = s_exception;
+    assign exception = s_exception;
     assign excep_info = { s_cause_type, s_mcause, s_mstatus, s_mret };
     
 endmodule
