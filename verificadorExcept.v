@@ -109,17 +109,10 @@ module verificadorExcept (
                 s_mstatus = 8'h10;
                 s_exception = 1;
             end 
-
-            // // URET (lo vamos a tratar como una excepcion para actualizar todo)
-            // if (instr == 32'h00100073) begin
-            //     s_cause_type = 0;
-            //     s_mstatus = 8'h01;
-            // end 
         end
         
         exception = s_exception;
         excep_info = { s_cause_type, s_mcause, s_mstatus, s_mret };
     end
 
-    
 endmodule

@@ -39,42 +39,35 @@ module CSR_regs (
     parameter ADDR_MTVEC   = 12'h005;
     parameter ADDR_MIP     = 12'h044;
 
-    // reg [31:0] prev_s_data_out; // Registro temporal para almacenar el valor anterior
-
     // -- lectura del registro csr ---
     always @(*) 
     begin
         case (csr_addr)
             ADDR_MSTATUS: data_out = mstatus;
-            ADDR_FRM: begin 
-                // MRET
-                data_out = mepc; // debe retornar al valor de MEPC
-                mstatus <= {24'b0, except_info[23:16]}; // mstatus al valor inicial
-            end
+            ADDR_FRM:     data_out = mepc; // MRET: retorna el valor de MEPC
             ADDR_MEPC:    data_out = mepc;
             ADDR_MCAUSE:  data_out = mcause;
             ADDR_MTVEC:   data_out = mtvec;
             ADDR_MIP:     data_out = mip;
-            default:      data_out = 32'bx;
+            default:      data_out = 32'b0; // Valor por defecto
         endcase
 
-        // si hay una excepcion "forzamos" los estados
         if (except) begin
             data_out = mtvec;
+        end
+    end
+
+    // -- escritura del registro csr y manejo de excepciones ---
+    always @(posedge(clk)) 
+    begin
+        if (except) begin
+            // Manejo de excepciones
             mepc <= {16'b0, except_info[15:0]};
             mstatus <= {24'b0, except_info[23:16]};
             mcause <= {except_info[31], 24'b0, except_info[30:24]};
         end
-    end
-
-    // -- escritura del registro csr ---
-    always @(posedge(clk)) 
-    begin
-        // Guardar el valor anterior de s_data_out antes de cualquier modificación
-        // prev_s_data_out <= data_out;
-
-        // si esta habilitado y no hay una excepcion
-        if (csr_w & ~except) begin
+        else if (csr_w) begin
+            // Escritura en registros CSR
             case (csr_addr)
                 ADDR_MSTATUS: mstatus <= data_in;
                 ADDR_MEPC:    mepc    <= data_in;
@@ -83,9 +76,6 @@ module CSR_regs (
                 ADDR_MIP:     mip     <= data_in;
             endcase    
         end
-
-        // Asignar el valor anterior a data_out
-        // data_out <= prev_s_data_out;
     end
 
     assign csr_info = { mip[15:0], mstatus[15:0] };
