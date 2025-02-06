@@ -6,7 +6,9 @@ module Top (
     input wire key,
     output [15:0] pc,
     output [31:0] instr,
-    output [31:0] mem_out
+    output [31:0] mem_out,
+    output [31:0] led_1,
+    output [31:0] led_2
 );
 
     // output of processor
@@ -34,9 +36,12 @@ module Top (
         .addr_ram(alu_res[15:0]),
         .data(write_data),
         .addr_rom(s_pc),
+        .key(key),
 
         .out_rom(s_instr),
-        .out_ram(read_data)
+        .out_ram(read_data),
+        .led_1(led_1),
+        .led_2(led_2)
     );
     
     assign pc = s_pc;
