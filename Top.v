@@ -17,12 +17,14 @@ module Top (
     wire [31:0] alu_res, write_data;
     // output of memory
     wire [31:0] s_instr, read_data;
+    wire irq;
 
     rv32i processor (
         .clk(clk),
         .key(key),
         .instr(s_instr),
         .read_data(read_data),
+        .irq(irq),
 
         .mem_w(mem_w),
         .alu_res(alu_res),
@@ -36,12 +38,13 @@ module Top (
         .addr_ram(alu_res[15:0]),
         .data(write_data),
         .addr_rom(s_pc),
-        .key(key),
+        .key({31'b0, key}),
 
         .out_rom(s_instr),
         .out_ram(read_data),
         .led_1(led_1),
-        .led_2(led_2)
+        .led_2(led_2),
+        .irq(irq)
     );
     
     assign pc = s_pc;

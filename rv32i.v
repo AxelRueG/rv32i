@@ -7,6 +7,7 @@ module rv32i (
     input wire key,
     input [31:0] instr,
     input [31:0] read_data,
+    input irq,
 
     output wire mem_w,
     output [31:0] alu_res,
@@ -90,6 +91,7 @@ module rv32i (
 
     verificadorExcept excep_validator(
         .csr_info(s_csr_info),
+        .irq(irq),
         .addr_rom(pc),
         .addr_ram(alu_res[15:0]),
         .instr(instr),

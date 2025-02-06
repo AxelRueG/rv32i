@@ -9,6 +9,8 @@ module top_tb;
     wire [15:0] pc;
     wire [31:0] instr;
     wire [31:0] data;
+    wire [31:0] led_1;
+    wire [31:0] led_2;
 
     integer iter;
 
@@ -17,7 +19,9 @@ module top_tb;
         .key(key),
         .pc(pc),
         .instr(instr),
-        .mem_out(data)
+        .mem_out(data),
+        .led_1(led_1),
+        .led_2(led_2)
     );
 
     // start clock
@@ -26,14 +30,20 @@ module top_tb;
         forever #5 clk = ~clk;
     end
 
+    initial begin
+      key = 0;
+      #40
+      key = 1;
+      #8
+      key = 0;
+    end
+
     // execute instructions
     initial begin
         $dumpfile("./waves/top.vcd");
         $dumpvars(0, uut);
-        
-        key = 0;
 
-        for (iter = 0; iter<64; iter=iter+1) begin
+        for (iter = 0; iter<500; iter=iter+1) begin
             // #2
             // $display("[%d : %d] -> <rom: %h, ram: %h>", iter, pc, instr, data);
             // #8

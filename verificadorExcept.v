@@ -15,6 +15,7 @@ implementado:
 
 module verificadorExcept (
     input [31:0] csr_info, // senial compuesta por mstatus y mip
+    input irq,
 
     // entradas que debemos comprovar
     input [15:0] addr_rom, // instruccion desalineada
@@ -109,6 +110,15 @@ module verificadorExcept (
                 s_mstatus = 8'h10;
                 s_exception = 1;
             end 
+
+            if (csr_info[31:16] == 16'b0001 && irq == 1) begin
+                s_mcause = 16;
+                s_mret = addr_rom;
+                s_cause_type = 1;
+                s_mstatus = 8'h10;
+                s_exception = 1;
+            end
+
         end
         
         exception = s_exception;

@@ -12,7 +12,8 @@ module Memory (
     output wire [31:0] out_rom,
     output wire [31:0] out_ram,
     output wire [31:0] led_1,
-    output wire [31:0] led_2
+    output wire [31:0] led_2,
+    output wire irq
 );
 
     DM data_memory (
@@ -24,7 +25,8 @@ module Memory (
 
         .key(key),
         .led_1(led_1),
-        .led_2(led_2)
+        .led_2(led_2),
+        .IRQ(irq)
     );
 
     IM instruction_memory (
