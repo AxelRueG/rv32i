@@ -30,14 +30,14 @@ module DM(
     // postedge activation
     always @(posedge clk) begin
         if (we) begin
-            RAM[addr] <= wd;
+            RAM[addr >> 2] <= wd;
         end
 
         RAM[29] = key;
     end
 
     // return prev value
-    assign rd = RAM[addr];
+    assign rd = RAM[addr >> 2]; // direccion segmentada de a 4
     assign led_1 = RAM[30];
     assign led_2 = RAM[31];
     assign IRQ = RAM[29][0];

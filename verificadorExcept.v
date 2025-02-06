@@ -30,8 +30,8 @@ module verificadorExcept (
     output reg [31:0] excep_info // aca va a estar codificado la causa y la direccion generadora
 );
     // parametros del procesador
-    parameter MAX_RAM_SIZE = 16'h001f;
-    parameter MAX_ROM_SIZE = 16'h01fc; // 127 direcciones de memeoria alineadas de a 4 -> 508
+    parameter MAX_RAM_SIZE = 16'h007c; //  32 addr RAM alineadas cada 4 partiendo de 0 -> 124
+    parameter MAX_ROM_SIZE = 16'h01fc; // 128 addr ROM alineadas cada 4 partiendo de 0 -> 508
 
 
     // seniales que generar una salida conpuesta codificada con la informacion de la excep
@@ -111,6 +111,7 @@ module verificadorExcept (
                 s_exception = 1;
             end 
 
+            // Interrupcion
             if (csr_info[31:16] == 16'b0001 && irq == 1) begin
                 s_mcause = 16;
                 s_mret = addr_rom;
