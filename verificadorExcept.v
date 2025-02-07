@@ -1,4 +1,4 @@
-/**
+/** ------------------------------------------------------------------------------------------------
 CONTROLADOR ENCARGADO DE VERIFICAR EXCEPCIONES
 
 implementado:
@@ -11,7 +11,7 @@ implementado:
 [*] deteccion de excepcion mcause 4
 [*] deteccion de excepcion mcause 0
 [*] ir a manejador
-*/
+------------------------------------------------------------------------------------------------- */
 
 module verificadorExcept (
     input [31:0] csr_info, // senial compuesta por mstatus y mip

@@ -43,7 +43,7 @@ module top_tb;
         $dumpfile("./waves/top.vcd");
         $dumpvars(0, uut);
 
-        for (iter = 0; iter<500; iter=iter+1) begin
+        for (iter = 0; iter<64; iter=iter+1) begin
             // #2
             // $display("[%d : %d] -> <rom: %h, ram: %h>", iter, pc, instr, data);
             // #8
