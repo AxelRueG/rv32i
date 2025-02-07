@@ -68,6 +68,10 @@ module CSR_regs (
                 ADDR_MIP:     mip     <= data_in;
             endcase    
         end
+
+        if (mstatus == 32'h00000010 && csr_addr == ADDR_FRM) begin
+            mstatus = 1;
+        end
     end
 
     assign csr_info = { mip[15:0], mstatus[15:0] };
