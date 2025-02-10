@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.120 (w)1999-2024 BSI
+[*] Mon Feb 10 02:57:37 2025
+[*]
+[dumpfile] "/home/axelrue/Documents/codes/verilog/rv32i/waves/top.vcd"
+[dumpfile_mtime] "Mon Feb 10 02:22:12 2025"
+[dumpfile_size] 303143
+[savefile] "/home/axelrue/Documents/codes/verilog/rv32i/top_tb_waves.gtkw"
+[timestart] 0
+[size] 1870 1001
+[pos] -1 -1
+*-8.498742 2558 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[treeopen] top_tb.uut.
+[treeopen] top_tb.uut.memory.
+[treeopen] top_tb.uut.processor.
+[treeopen] top_tb.uut.processor.data_path.
+[sst_width] 284
+[signals_width] 118
+[sst_expanded] 1
+[sst_vpaned_height] 293
+@28
+top_tb.uut.clk
+@200
+-
+@28
+top_tb.uut.processor.excep_validator.irq
+top_tb.uut.processor.excep_validator.exception
+@200
+-salidas
+@24
+top_tb.uut.led_1[31:0]
+top_tb.uut.led_2[31:0]
+@200
+-
+-
+[pattern_trace] 1
+[pattern_trace] 0
